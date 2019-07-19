@@ -17,6 +17,8 @@
 */
 import React from "react";
 // nodejs library to set properties for components
+import Axios from "axios";
+
 import PropTypes from "prop-types";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
@@ -47,6 +49,8 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
+import Button from "components/CustomButtons/Button.jsx";
+
 
 import { bugs, website, server } from "variables/general.jsx";
 
@@ -60,7 +64,9 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 class Dashboard extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    text: "Next",
+    persons: {}
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -69,8 +75,19 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+
+  changeText = (text) => {
+    this.setState({ text }); 
+    Axios.get(`https://localhost:44358/api/UsersResource`)
+    .then(res => {
+      const persons = res.data;
+      this.setState({ persons });
+    })
+  } 
+
   render() {
     const { classes } = this.props;
+    const { text } = this.state //destucture state
     return (
       <div>
         <GridContainer>
@@ -291,6 +308,9 @@ class Dashboard extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
+            <Button color="primary" onClick={() => this.changeText("Textão")}>{text}</Button>
+          <GridItem>
+          </GridItem>          
         </GridContainer>
       </div>
     );
