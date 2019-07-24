@@ -78,7 +78,8 @@ class Dashboard extends React.Component {
 
   changeText = (text) => {
     this.setState({ text }); 
-    Axios.get(`https://localhost:44358/api/UsersResource`)
+    // Axios.get(`https://localhost:44358/api/UsersResource`)
+    Axios.get(`https://smartlock-backend.azurewebsites.net/api/UsersResource`)
     .then(res => {
       const persons = res.data;
       this.setState({ persons });
