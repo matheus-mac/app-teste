@@ -17,7 +17,12 @@
 */
 import React from "react";
 // nodejs library to set properties for components
+
 import Axios from "axios";
+// Promise based HTTP client for the browser and node.js
+
+import AzureStorage from "azure-storage"
+//Microsoft Azure Storage SDK for Node.js
 
 import PropTypes from "prop-types";
 // react plugin for creating charts
@@ -50,6 +55,13 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import Button from "components/CustomButtons/Button.jsx";
+import FileUploader from "components/FileUploader/FileUploader.jsx";
+
+
+//azure.createBlobServiceWithSas('https://myaccount.blob.core.windows.net', 'SAS');
+//blobService.createContainer(...);
+
+
 
 
 import { bugs, website, server } from "variables/general.jsx";
@@ -77,13 +89,27 @@ class Dashboard extends React.Component {
   };
 
   changeText = (text) => {
-    this.setState({ text }); 
-    // Axios.get(`https://localhost:44358/api/UsersResource`)
-    Axios.get(`https://smartlock-backend.azurewebsites.net/api/UsersResource`)
-    .then(res => {
-      const persons = res.data;
-      this.setState({ persons });
-    })
+    // this.setState({ text }); 
+    // // Axios.get(`https://localhost:44358/api/UsersResource`)
+    // Axios.get(`https://smartlock-backend.azurewebsites.net/api/UsersResource`)
+    // .then(res => {
+    //   const persons = res.data;
+    //   this.setState({ persons });
+    // })
+    const account = {
+      name: "smartlockfilebucket",
+      sas:  "se=2020-04-30&sp=rwdlac&sv=2018-03-28&ss=b&srt=sco&sig=dB/uIfHWxC%2Bknj5h3Id13xQYN0sXPwj7ywSLCCul4%2BA%3D"
+    };
+    const blobUri = 'https://' + account.name + '.blob.core.windows.net';
+    const blobService = AzureStorage.createBlobServiceWithSas(blobUri, account.sas);
+    
+    blobService.createContainerIfNotExists('mycontainer',  (error, container) => {
+        if (error) {
+            // Handle create container error
+        } else {
+            console.log(container.name);
+        }
+    });
   } 
 
   render() {
@@ -311,6 +337,7 @@ class Dashboard extends React.Component {
           </GridItem>
             <Button color="primary" onClick={() => this.changeText("Textão")}>{text}</Button>
           <GridItem>
+            <FileUploader> </FileUploader>
           </GridItem>          
         </GridContainer>
       </div>
