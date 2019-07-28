@@ -11,17 +11,18 @@ handleDrop = (files) => {
       fileList.push(files[i])
     }
     this.setState({files: fileList})
+    this.props.handleDrop(files);
   }
 render() {
     return (
       <DragAndDrop handleDrop={this.handleDrop}>
-        <div style={{height: 300, width: 250}}>
+        <div style={{height: 300, width: 500}}>
           {this.state.files.map((file,i) =>
             <div key={i}>
               <div flex>{file.name}</div>
               <div flex><i class="material-icons">close</i></div>
             </div>
-          )}
+          )}          
         </div>
       </DragAndDrop>
     )

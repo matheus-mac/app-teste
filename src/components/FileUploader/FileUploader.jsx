@@ -1,79 +1,53 @@
-/*!
+import React, {Component} from "react";
+import FileList from "./FileList"
+import Button from "../CustomButtons/Button"
+import AzureStorage from "../../scripts/bundle/azure-storage.blob.min"
 
-=========================================================
-* Material Dashboard React - v1.7.0
-=========================================================
+class FileUploader extends Component {
+  state = {
+    fileList : []
+  }
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-react/blob/master/LICENSE.md)
+  getFilesFromChildren = (files) => { 
+    this.setState({fileList: files})
+  }
 
-* Coded by Creative Tim
+  changeText =() => {
+    const account = {
+      name: "smartlockfilebucket",
+      sas:  "se=2020-04-30&sp=rwdlac&sv=2018-03-28&ss=b&srt=sco&sig=dB/uIfHWxC%2Bknj5h3Id13xQYN0sXPwj7ywSLCCul4%2BA%3D"
+    };
+    const blobUri = 'https://' + account.name + '.blob.core.windows.net';
+    const blobService = AzureStorage.createBlobServiceWithSas(blobUri, account.sas);
+    var array = this.state.fileList;
 
-=========================================================
+    Array.from(this.state.fileList).forEach(file => { 
+      blobService.createBlockBlobFromBrowserFile('mycontainer', 
+        file.name, 
+        file, 
+        (error, result) => {
+            if(error) {
+                // Handle blob error
+            } else {
+                console.log('Upload is successful');
+            }
+        })
+    }); 
+  }
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
-
-import FileList from "components/FileUploader/FileList.jsx"
-function FileUploader({props }) {
-  // const {
-  //   classes,
-  //   color,
-  //   round,
-  //   children,
-  //   disabled,
-  //   simple,
-  //   size,
-  //   block,
-  //   link,
-  //   justIcon,
-  //   className,
-  //   muiClasses,
-  //   ...rest
-  // } = props;
-  // const btnClasses = classNames({
-  //   [classes.button]: true,
-  //   [classes[size]]: size,
-  //   [classes[color]]: color,
-  //   [classes.round]: round,
-  //   [classes.disabled]: disabled,
-  //   [classes.simple]: simple,
-  //   [classes.block]: block,
-  //   [classes.link]: link,
-  //   [classes.justIcon]: justIcon,
-  //   [className]: className
-  // });
-  return (
-    <FileList></FileList>
-  );
+  render(){
+    return (
+      <div>
+        <div>
+          <FileList handleDrop={this.getFilesFromChildren}></FileList>
+        </div>        
+        <div>
+          <Button color="primary" onClick={() => this.changeText()}>Upload</Button>
+          <Button color="primary">Delete</Button>
+        </div>
+      </div>
+    );
+  }
 }
-
-// FileUploader.propTypes = {
-//   classes: PropTypes.object.isRequired,
-//   color: PropTypes.oneOf([
-//     "primary",
-//     "info",
-//     "success",
-//     "warning",
-//     "danger",
-//     "rose",
-//     "white",
-//     "transparent"
-//   ]),
-//   size: PropTypes.oneOf(["sm", "lg"]),
-//   simple: PropTypes.bool,
-//   round: PropTypes.bool,
-//   disabled: PropTypes.bool,
-//   block: PropTypes.bool,
-//   link: PropTypes.bool,
-//   justIcon: PropTypes.bool,
-//   className: PropTypes.string,
-//   // use this to pass the classes props from Material-UI
-//   muiClasses: PropTypes.object,
-//   children: PropTypes.node
-// };
 
 export default FileUploader;

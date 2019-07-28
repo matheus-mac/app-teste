@@ -57,13 +57,6 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import FileUploader from "components/FileUploader/FileUploader.jsx";
 
-
-//azure.createBlobServiceWithSas('https://myaccount.blob.core.windows.net', 'SAS');
-//blobService.createContainer(...);
-
-
-
-
 import { bugs, website, server } from "variables/general.jsx";
 
 import {
@@ -96,20 +89,6 @@ class Dashboard extends React.Component {
     //   const persons = res.data;
     //   this.setState({ persons });
     // })
-    const account = {
-      name: "smartlockfilebucket",
-      sas:  "se=2020-04-30&sp=rwdlac&sv=2018-03-28&ss=b&srt=sco&sig=dB/uIfHWxC%2Bknj5h3Id13xQYN0sXPwj7ywSLCCul4%2BA%3D"
-    };
-    const blobUri = 'https://' + account.name + '.blob.core.windows.net';
-    const blobService = AzureStorage.createBlobServiceWithSas(blobUri, account.sas);
-    
-    blobService.createContainerIfNotExists('mycontainer',  (error, container) => {
-        if (error) {
-            // Handle create container error
-        } else {
-            console.log(container.name);
-        }
-    });
   } 
 
   render() {
@@ -335,11 +314,18 @@ class Dashboard extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-            <Button color="primary" onClick={() => this.changeText("Textão")}>{text}</Button>
-          <GridItem>
-            <FileUploader> </FileUploader>
-          </GridItem>          
-        </GridContainer>
+          </GridContainer>
+          
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={6}>
+              <Button color="primary" onClick={() => this.changeText("Textão")}>{text}</Button> 
+            </GridItem>
+          
+            <GridItem xs={12} sm={12} md={6}>
+              <FileUploader> </FileUploader>
+            </GridItem>
+          </GridContainer>          
+        
       </div>
     );
   }
