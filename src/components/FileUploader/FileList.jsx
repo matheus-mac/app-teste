@@ -19,8 +19,8 @@ render() {
         <div style={{height: 300, width: 500}}>
           {this.state.files.map((file,i) =>
             <div key={i}>
-              <div flex>{file.name}</div>
-              <div flex><i class="material-icons">close</i></div>
+              <div>{file.name}</div>
+              <div><i className="material-icons">close</i></div>
             </div>
           )}          
         </div>

@@ -12,20 +12,16 @@ class DragAndDrop extends Component {
     e.preventDefault()
     e.stopPropagation()
     this.dragCounter++
-    console.log(this.dragCounter);
     if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
       this.setState({drag: true})
-      console.log("drag in");
     }
   }
   handleDragOut = (e) => {
     e.preventDefault()
     e.stopPropagation()
     this.dragCounter--
-    console.log(this.dragCounter);
     if (this.dragCounter === 0) {
       this.setState({drag: false})
-      console.log("drag out");
     }
   }
   handleDrop = (e) => {

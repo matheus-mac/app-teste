@@ -53,6 +53,11 @@ class Tasks extends React.Component {
       checked: newChecked
     });
   };
+
+  handleDelete = (fileName) => {
+    this.props.deleteAction(fileName);
+  }
+
   render() {
     const { classes, tasksIndexes, tasks, rtlActive } = this.props;
     const tableCellClasses = classnames(classes.tableCell, {
@@ -101,11 +106,11 @@ class Tasks extends React.Component {
                   placement="top"
                   classes={{ tooltip: classes.tooltip }}
                 >
-                  <IconButton
+                  <IconButton onClick={() =>this.handleDelete(tasks[value])}
                     aria-label="Close"
                     className={classes.tableActionButton}
                   >
-                    <Close
+                    <Close 
                       className={
                         classes.tableActionButtonIcon + " " + classes.close
                       }
