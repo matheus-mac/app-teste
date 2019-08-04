@@ -36,21 +36,18 @@ const actualHost = developing ? local_host : production_host
 
 class ApiTester extends React.Component {
   state = {
-    userId: 'e',
+    userId: '',
     userName: '',
     passWord: '',
     persons: []
   };
 
   formatToFitOnTableList = () => {
-    var array = Array.from(this.state.persons);
+    var array = [];
+    array = array.concat(this.state.persons);
     var returnArray = [];
-    var newItem = {
-      name: ""
-    };
-    array.map((item, i) => {
-      newItem.name = item.username;
-      returnArray.push(newItem);
+    array.map(item => {
+      returnArray.push({name: item.id +"-" + item.username});
     }
     )
     this.setState({ persons: returnArray })
@@ -65,10 +62,10 @@ class ApiTester extends React.Component {
       })
   }
 
-  getUserById = (userId) => {
+  getUserById = () => {
     Axios.get(actualHost + `/api/UsersResource`, {
       params: {
-        id: userId
+        id: this.state.userId
       }
     }).then(res => {
       this.setState({ persons: res.data }, () => {
@@ -77,33 +74,43 @@ class ApiTester extends React.Component {
     })
   }
 
-  modifyUserById = (userId, userName, passWord) => {
-    Axios.put(actualHost + `/api/UsersResource/` + userId,
+  modifyUserById = () => {
+    Axios.put(actualHost + `/api/UsersResource/` + this.state.userId,
       {
-        id: userId,
-        username: userName,
-        password: passWord
+        id: this.state.userId,
+        username: this.state.userName,
+        password: this.state.passWord
       }
     )
   }
 
-  addUser = (userName, passWord) => {
+  addUser = () => {
     var teste = this.state.userId;
     var asai = "sfd";
     Axios.post(actualHost + `/api/UsersResource`,
       {
-        username: userName,
-        password: passWord
+        username: this.state.userName,
+        password: this.state.passWord
       }
     )
   }
 
-  deleteUserById = (userId) => {
+  deleteUserById = () => {
     Axios.delete(actualHost + `/api/UsersResource/`, {
       params: {
-        id: userId
+        id: this.state.userId
       }
     })
+  }
+
+  handleOnChangeID = (event) =>{
+    this.setState({userId: event.target.value})
+  }
+  handleOnChangeName = (event) =>{
+    this.setState({userName: event.target.value})
+  }
+  handleOnChangePassword = (event) =>{
+    this.setState({passWord: event.target.value})
   }
 
   render() {
@@ -138,7 +145,7 @@ class ApiTester extends React.Component {
                         Retorna o usuário do ID passado
                     </TableCell>
                       <TableCell>
-                        <Button color="primary" onClick={() => this.getUserById(5)}>Teste</Button>
+                        <Button color="primary" onClick={() => this.getUserById()}>Teste</Button>
                       </TableCell>
                     </TableRow>
                     <TableRow>
@@ -188,8 +195,8 @@ class ApiTester extends React.Component {
                 <CustomInput
                   labelText="ID"
                   id="id"
-                  value={this.state.userId}
                   inputProps={{
+                    onChange: this.handleOnChangeID,
                     value: this.state.userId
                   }}
                   formControlProps={{
@@ -199,6 +206,10 @@ class ApiTester extends React.Component {
                 <CustomInput
                   labelText="Username"
                   id="username"
+                  inputProps={{
+                    onChange: this.handleOnChangeName,
+                    value: this.state.userName
+                  }}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -206,6 +217,10 @@ class ApiTester extends React.Component {
                 <CustomInput
                   labelText="Password"
                   id="password"
+                  inputProps={{
+                    onChange: this.handleOnChangePassword,
+                    value: this.state.passWord
+                  }}
                   formControlProps={{
                     fullWidth: true
                   }}
