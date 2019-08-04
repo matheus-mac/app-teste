@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import FileList from "./FileList"
-import Button from "../CustomButtons/Button"
 import AzureStorage from "../../scripts/bundle/azure-storage.blob.min"
-import Tasks from "../Tasks/Tasks"
+import TableList from "../Lists/tableList"
+import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
 
 const account = {
   name: "smartlockfilebucket",
@@ -11,56 +12,55 @@ const account = {
 const blobUri = 'https://' + account.name + '.blob.core.windows.net';
 const blobService = AzureStorage.createBlobServiceWithSas(blobUri, account.sas);
 
-var YOUR_BLOB_NAME;
 class FileUploader extends Component {
   state = {
-    fileList: [],
-    filesName: []
+    toUploadfileList: [],
+    uploadedFileList: []
   }
 
   getFilesFromChildren = (files) => {
-    this.setState({ fileList: files })
+    this.setState({ toUploadfileList: files })
   }
 
-  uploadFiles = () => {
-    Array.from(this.state.fileList).forEach(file => {
+  uploadFiles = (files) => {
+    var arrayUploadedFiles= this.state.uploadedFileList;
+    var countUploadedFiles = 0;
+    Array.from(files).forEach(file => {
       blobService.createBlockBlobFromBrowserFile('mycontainer',
         file.name,
         file,
         (error, result) => {
+          countUploadedFiles++;
           if (error) {
             // Handle blob error
           } else {
-            this.setState({ filesName: this.state.filesName.push(file.name) })
             console.log('Upload is successful');
+            arrayUploadedFiles.push(file);
+            if (countUploadedFiles===files.length){
+              this.setState({uploadedFileList: arrayUploadedFiles});
+              this.setState({toUploadfileList: []});
+            }
           }
         })
     });
   }
 
   listFiles = () => {
-
     blobService.listBlobsSegmented('mycontainer', null, (error, results) => {
       if (error) {
         // Handle list blobs error
       } else {
-        var filesName = [];
-        YOUR_BLOB_NAME = results.entries[0].name;
-        results.entries.forEach(blob => {
-          filesName.push(blob.name);
-          // console.log(blob.name);
-        });
-        this.setState({ filesName: filesName })
+        this.setState({ uploadedFileList: results.entries })
       }
     });
   }
 
-  downloadFiles = () => {
-    var downloadLink = blobService.getUrl('mycontainer', YOUR_BLOB_NAME, account.sas);
+  downloadFiles = (fileName) => {
+    var downloadLink = blobService.getUrl('mycontainer', fileName, account.sas);
     window.open(downloadLink)
   }
 
-  deleteFile = (fileName) => {
+  deleteUploadedFile = (fileName) => {
     blobService.deleteBlobIfExists('mycontainer', fileName, (error, result) => {
       if (error) {
         // Handle delete blob error
@@ -69,23 +69,30 @@ class FileUploader extends Component {
       }
     });
   }
-
   render() {
     return (
       <div>
-        <div>
-          {this.listFiles()}
-          <Tasks deleteAction={this.deleteFile}
-            checkedIndexes={[0, 3]}
-            tasksIndexes={[0, 1, 2, 3, 4, 5, 6]}
-            tasks={this.state.filesName}
-          />
-          <FileList handleDrop={this.getFilesFromChildren}></FileList>
-        </div>
-        <div>
-          <Button color="primary" onClick={() => this.uploadFiles()}>Upload</Button>
-          <Button color="primary" onClick={() => this.downloadFiles()}>Delete</Button>
-        </div>
+        <GridContainer>
+          <GridItem xs={12} sm={6} md={6}>
+            <FileList 
+              handleDrop={this.getFilesFromChildren}
+              handleDelete={this.getFilesFromChildren}
+              handleUpload={this.uploadFiles}
+            ></FileList>
+          </GridItem>
+          <GridItem xs={12} sm={6} md={6}>
+            {this.listFiles()}
+            <TableList
+              items={this.state.uploadedFileList}
+              title={"Uploaded Files:"}
+              showEditButton={false}
+              showDeleteButton={true}
+              showViewButton={true}
+              deleteAction={this.deleteUploadedFile}
+              viewAction={this.downloadFiles}
+            />
+          </GridItem>
+        </GridContainer>
       </div>
     );
   }

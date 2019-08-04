@@ -17,13 +17,6 @@
 */
 import React from "react";
 // nodejs library to set properties for components
-
-import Axios from "axios";
-// Promise based HTTP client for the browser and node.js
-
-import AzureStorage from "azure-storage"
-//Microsoft Azure Storage SDK for Node.js
-
 import PropTypes from "prop-types";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
@@ -54,8 +47,6 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import FileUploader from "components/FileUploader/FileUploader.jsx";
 
 import { bugs, website, server } from "variables/general.jsx";
 
@@ -80,16 +71,6 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
-
-  changeText = (text) => {
-    // this.setState({ text }); 
-    // // Axios.get(`https://localhost:44358/api/UsersResource`)
-    // Axios.get(`https://smartlock-backend.azurewebsites.net/api/UsersResource`)
-    // .then(res => {
-    //   const persons = res.data;
-    //   this.setState({ persons });
-    // })
-  } 
 
   render() {
     const { classes } = this.props;
@@ -314,18 +295,7 @@ class Dashboard extends React.Component {
               </CardBody>
             </Card>
           </GridItem>
-          </GridContainer>
-          
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={6}>
-              <Button color="primary" onClick={() => this.changeText("Textão")}>{text}</Button> 
-            </GridItem>
-          
-            <GridItem xs={12} sm={12} md={6}>
-              <FileUploader> </FileUploader>
-            </GridItem>
-          </GridContainer>          
-        
+          </GridContainer>  
       </div>
     );
   }

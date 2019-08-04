@@ -1,30 +1,62 @@
 import React, { Component } from 'react'
 import DragAndDrop from './DragAndDrop'
+import TableList from '../Lists/tableList';
+import Button from "../CustomButtons/Button"
+import CloudUpload from "@material-ui/icons/CloudUpload";
+const pageTitle = "Files to Upload:"
+
 class FileList extends Component {
-state = {
+  state = {
     files: []
   }
-handleDrop = (files) => {
+  handleDrop = (files) => {
     let fileList = this.state.files
     for (var i = 0; i < files.length; i++) {
       if (!files[i].name) return
       fileList.push(files[i])
     }
-    this.setState({files: fileList})
+    this.setState({ files: fileList })
     this.props.handleDrop(files);
   }
-render() {
+
+  deleteToUploadFile = (fileName) => {
+    var array = Array.from(this.state.files);
+    var index = array.find(file => file.name === fileName)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({ files: array }, () => {
+        this.props.handleDelete(this.state.files);
+      })
+    }
+  }
+
+  uploadFiles = () => {
+    this.props.handleUpload(this.state.files);
+    this.setState({files:[]});
+  }
+
+  render() {
     return (
+      <div>
       <DragAndDrop handleDrop={this.handleDrop}>
-        <div style={{height: 300, width: 500}}>
-          {this.state.files.map((file,i) =>
-            <div key={i}>
-              <div>{file.name}</div>
-              <div><i className="material-icons">close</i></div>
-            </div>
-          )}          
+        <div style={{ height: 400, width: 508 }}>
+          <TableList
+            items={this.state.files}
+            title={pageTitle}
+            showDeleteButton={true}
+            showViewButton={false}
+            showEditButton={false}
+            deleteAction={this.deleteToUploadFile}
+          ></TableList>
         </div>
       </DragAndDrop>
+        <div>
+          <Button style={{float:'right'}}color="primary" onClick={() => this.uploadFiles()}>
+            <CloudUpload></CloudUpload>
+              Upload
+            </Button>
+        </div>
+      </div>
     )
   }
 }

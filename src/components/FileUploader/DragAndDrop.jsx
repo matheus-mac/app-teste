@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 class DragAndDrop extends Component {
   state = {
-    drag: false
+    drag: true
   }
   dropRef = React.createRef()
   handleDrag = (e) => {
@@ -80,7 +80,7 @@ class DragAndDrop extends Component {
                   fontSize: 36
                 }}
               >
-                <div>drop here :)</div>
+                <div>Drop your files here :)</div>
               </div>
           </div>
         }

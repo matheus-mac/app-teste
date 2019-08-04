@@ -24,6 +24,8 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
+import Folder from "@material-ui/icons/FolderOpen"
+import Save_Alt from "@material-ui/icons/SaveAlt"
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
@@ -33,6 +35,8 @@ import Icons from "views/Icons/Icons.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
+import FileUploaderPage from "components/FileUploader/FileUploader.jsx"
+import APITesterPage from "components/API Tester/APItester.jsx"
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.jsx";
 
@@ -93,20 +97,36 @@ const dashboardRoutes = [
     component: NotificationsPage,
     layout: "/admin"
   },
+  // {
+  //   path: "/rtl-page",
+  //   name: "RTL Support",
+  //   rtlName: "پشتیبانی از راست به چپ",
+  //   icon: Language,
+  //   component: RTLPage,
+  //   layout: "/rtl"
+  // },
+  // {
+  //   path: "/upgrade-to-pro",
+  //   name: "Upgrade To PRO",
+  //   rtlName: "التطور للاحترافية",
+  //   icon: Unarchive,
+  //   component: UpgradeToPro,
+  //   layout: "/admin"
+  // },
   {
-    path: "/rtl-page",
-    name: "RTL Support",
-    rtlName: "پشتیبانی از راست به چپ",
-    icon: Language,
-    component: RTLPage,
-    layout: "/rtl"
+    path: "/file-manager",
+    name: "File Manager",
+    rtlName: "",
+    icon: Folder,
+    component: FileUploaderPage,
+    layout: "/admin"
   },
   {
-    path: "/upgrade-to-pro",
-    name: "Upgrade To PRO",
-    rtlName: "التطور للاحترافية",
-    icon: Unarchive,
-    component: UpgradeToPro,
+    path: "/api-tester",
+    name: "API Tester",
+    rtlName: "",
+    icon: Save_Alt,
+    component: APITesterPage,
     layout: "/admin"
   }
 ];
