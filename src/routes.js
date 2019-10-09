@@ -37,6 +37,7 @@ import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import FileUploaderPage from "components/FileUploader/FileUploader.jsx"
 import APITesterPage from "components/API Tester/APItester.jsx"
+import Homepage from "views/Homepage/Homepage.jsx"
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.jsx";
 
@@ -127,6 +128,14 @@ const dashboardRoutes = [
     rtlName: "",
     icon: Save_Alt,
     component: APITesterPage,
+    layout: "/admin"
+  },
+  {
+    path: "/",
+    name: "Homepage",
+    rtlName: "",
+    icon: Save_Alt,
+    component: Homepage,
     layout: "/admin"
   }
 ];

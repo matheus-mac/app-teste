@@ -29,7 +29,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 const local_host = "https://localhost:44358"
-const production_host = "https://smartlock-backend.azurewebsites.net"
+const production_host = "http://52.54.145.159:81"
 const developing = false
 const actualHost = developing ? local_host : production_host
 

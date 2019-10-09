@@ -25,6 +25,7 @@ import Admin from "layouts/Admin.jsx";
 import RTL from "layouts/RTL.jsx";
 
 import "assets/css/material-dashboard-react.css?v=1.7.0";
+import Homepage from "./views/Homepage/Homepage";
 
 const hist = createBrowserHistory();
 
@@ -32,8 +33,9 @@ ReactDOM.render(
   <Router history={hist}>
     <Switch>
       <Route path="/admin" component={Admin} />
-      <Route path="/rtl" component={RTL} />
-      <Redirect from="/" to="/admin/dashboard" />
+      <Route path="/" component={Homepage} />
+      {/* <Route path="/rtl" component={RTL} /> */}
+      {/* <Redirect from="/" to="/admin/dashboard" /> */}
     </Switch>
   </Router>,
   document.getElementById("root")
