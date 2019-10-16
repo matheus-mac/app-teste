@@ -30,7 +30,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-
+import Navbar from "components/Navbars/Navbar.jsx";
 import { bugs, website, server } from "variables/general.jsx";
 import { Router, Route, Switch, Redirect, Link } from "react-router-dom";
 import {
@@ -38,10 +38,10 @@ import {
   emailsSubscriptionChart,
   completedTasksChart
 } from "variables/charts.jsx";
-
+import Button from "components/CustomButtons/Button.jsx";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-import { Button } from "@material-ui/core";
-
+import { Toolbar } from "@material-ui/core";
+import routes from "routes.js";
 class Homepage extends React.Component {
   state = {
     value: 0,
@@ -61,17 +61,22 @@ class Homepage extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, ...rest } = this.props;
     const { text } = this.state //destucture state
     return (
       <div>
-        {/* <GridContainer>
-          /* <Link to="/admin/dashboard" className="btn btn-primary">LOGIN</Link>
-          <Button color="primary" onClick={() => this.login()}>Login</Button>
-        </GridContainer> */}
-      </div>
-
-      
+        <Toolbar className={classes.container}>
+          <GridContainer>
+            <GridItem xs={12} sm={6} md={6}>
+              teste
+            </GridItem>
+            <GridItem xs={12} sm={6} md={6}>
+              <Button color="primary" round onClick={() => this.login()}>Registre-se</Button>
+              <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
+            </GridItem>
+          </GridContainer>
+        </Toolbar>
+        </div>
     );
   }
 }
