@@ -28,6 +28,10 @@ import Store from "@material-ui/icons/Store";
 import Warning from "@material-ui/icons/Warning";
 import DateRange from "@material-ui/icons/DateRange";
 import LocalOffer from "@material-ui/icons/LocalOffer";
+import SystemUpdate from "@material-ui/icons/SystemUpdateRounded";
+import LockOpen from "@material-ui/icons/LockOpen";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+
 import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
@@ -82,21 +86,23 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
-                  <Icon>content_copy</Icon>
+                  {/* <Icon>content_copy</Icon> */}
+                  <SystemUpdate></SystemUpdate>
                 </CardIcon>
-                <p className={classes.cardCategory}>Used Space</p>
+                <p className={classes.cardCategory}>Fechaduras Atualizadas</p>
                 <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
+                  49/50 
+                  {/* <small>GB</small> */}
                 </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Danger>
+                  {/* <Danger>
                     <Warning />
                   </Danger>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
                     Get more space
-                  </a>
+                  </a> */}
                 </div>
               </CardFooter>
             </Card>
@@ -104,34 +110,34 @@ class Dashboard extends React.Component {
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <Store />
+                <CardIcon color="danger">
+                  <Icon>info_outline</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Revenue teste</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
+                <p className={classes.cardCategory}>Invasões no último mês</p>
+                <h3 className={classes.cardTitle}>10</h3>
               </CardHeader>
               <CardFooter stats>
-                <div className={classes.stats}>
+                {/* <div className={classes.stats}>
                   <DateRange />
                   Last 24 Hours
-                </div>
+                </div> */}
               </CardFooter>
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
             <Card>
-              <CardHeader color="danger" stats icon>
-                <CardIcon color="danger">
-                  <Icon>info_outline</Icon>
+              <CardHeader color="success" stats icon>
+                <CardIcon color="success">
+                  <LockOpen></LockOpen>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
+                <p className={classes.cardCategory}>Acessos no último mês</p>
                 <h3 className={classes.cardTitle}>75</h3>
               </CardHeader>
               <CardFooter stats>
-                <div className={classes.stats}>
+                {/* <div className={classes.stats}>
                   <LocalOffer />
                   Tracked from Github
-                </div>
+                </div> */}
               </CardFooter>
             </Card>
           </GridItem>
@@ -139,16 +145,16 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
-                  <Accessibility />
+                  <AccountCircle />
                 </CardIcon>
-                <p className={classes.cardCategory}>Followers</p>
-                <h3 className={classes.cardTitle}>+245</h3>
+                <p className={classes.cardCategory}>Usuários Vinculados</p>
+                <h3 className={classes.cardTitle}>405</h3>
               </CardHeader>
               <CardFooter stats>
-                <div className={classes.stats}>
+                {/* <div className={classes.stats}>
                   <Update />
                   Just Updated
-                </div>
+                </div> */}
               </CardFooter>
             </Card>
           </GridItem>
@@ -166,18 +172,18 @@ class Dashboard extends React.Component {
                 />
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Daily Sales</h4>
+                <h4 className={classes.cardTitle}>Acessos nas fechaduras por Mês</h4>
                 <p className={classes.cardCategory}>
-                  <span className={classes.successText}>
+                  {/* <span className={classes.successText}>
                     <ArrowUpward className={classes.upArrowCardCategory} /> 55%
                   </span>{" "}
-                  increase in today sales.
+                  increase in today sales. */}
                 </p>
               </CardBody>
               <CardFooter chart>
-                <div className={classes.stats}>
+                {/* <div className={classes.stats}>
                   <AccessTime /> updated 4 minutes ago
-                </div>
+                </div> */}
               </CardFooter>
             </Card>
           </GridItem>
@@ -194,15 +200,15 @@ class Dashboard extends React.Component {
                 />
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-                <p className={classes.cardCategory}>
+                <h4 className={classes.cardTitle}>Acessos do usuário por mês</h4>
+                {/* <p className={classes.cardCategory}>
                   Last Campaign Performance
-                </p>
+                </p> */}
               </CardBody>
               <CardFooter chart>
-                <div className={classes.stats}>
+                {/* <div className={classes.stats}>
                   <AccessTime /> campaign sent 2 days ago
-                </div>
+                </div> */}
               </CardFooter>
             </Card>
           </GridItem>
@@ -218,15 +224,15 @@ class Dashboard extends React.Component {
                 />
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Completed Tasks</h4>
-                <p className={classes.cardCategory}>
+                <h4 className={classes.cardTitle}>Arrombamentos por Mês</h4>
+                {/* <p className={classes.cardCategory}>
                   Last Campaign Performance
-                </p>
+                </p> */}
               </CardBody>
               <CardFooter chart>
-                <div className={classes.stats}>
+                {/* <div className={classes.stats}>
                   <AccessTime /> campaign sent 2 days ago
-                </div>
+                </div> */}
               </CardFooter>
             </Card>
           </GridItem>

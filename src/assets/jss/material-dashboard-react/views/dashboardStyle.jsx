@@ -93,6 +93,9 @@ const dashboardStyle = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  paddingTop:{
+    paddingTop:"40px"
   }
 };
 

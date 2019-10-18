@@ -353,6 +353,9 @@ const buttonStyle = {
         height: "17px"
       }
     }
+  },
+  center:{
+    margin: "20px auto 0",
   }
 };
 

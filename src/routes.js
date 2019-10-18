@@ -17,6 +17,7 @@
 */
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
+import Edit from "@material-ui/icons/Edit"
 import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import BubbleChart from "@material-ui/icons/BubbleChart";
@@ -38,6 +39,7 @@ import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import FileUploaderPage from "components/FileUploader/FileUploader.jsx"
 import APITesterPage from "components/API Tester/APItester.jsx"
 import Homepage from "views/Homepage/Homepage.jsx"
+import Cadastro from "views/Cadastro/Cadastro.jsx"
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.jsx";
 
@@ -48,6 +50,14 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
+    layout: "/admin"
+  },
+  {
+    path: "/cadastros",
+    name: "Cadastros",
+    rtlName: "لوحة القيادة",
+    icon: Edit,
+    component: Cadastro,
     layout: "/admin"
   },
   {
@@ -66,30 +76,30 @@ const dashboardRoutes = [
     component: TableList,
     layout: "/admin"
   },
-  {
-    path: "/typography",
-    name: "Typography",
-    rtlName: "طباعة",
-    icon: LibraryBooks,
-    component: Typography,
-    layout: "/admin"
-  },
-  {
-    path: "/icons",
-    name: "Icons",
-    rtlName: "الرموز",
-    icon: BubbleChart,
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    rtlName: "خرائط",
-    icon: LocationOn,
-    component: Maps,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/typography",
+  //   name: "Typography",
+  //   rtlName: "طباعة",
+  //   icon: LibraryBooks,
+  //   component: Typography,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/icons",
+  //   name: "Icons",
+  //   rtlName: "الرموز",
+  //   icon: BubbleChart,
+  //   component: Icons,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/maps",
+  //   name: "Maps",
+  //   rtlName: "خرائط",
+  //   icon: LocationOn,
+  //   component: Maps,
+  //   layout: "/admin"
+  // },
   {
     path: "/notifications",
     name: "Notifications",
@@ -131,7 +141,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/",
+    path: "/homepage",
     name: "Homepage",
     rtlName: "",
     icon: Save_Alt,

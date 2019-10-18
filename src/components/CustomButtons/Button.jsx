@@ -40,6 +40,7 @@ function RegularButton({ ...props }) {
     justIcon,
     className,
     muiClasses,
+    center,
     ...rest
   } = props;
   const btnClasses = classNames({
@@ -52,6 +53,7 @@ function RegularButton({ ...props }) {
     [classes.block]: block,
     [classes.link]: link,
     [classes.justIcon]: justIcon,
+    [classes.center]: center,
     [className]: className
   });
   return (

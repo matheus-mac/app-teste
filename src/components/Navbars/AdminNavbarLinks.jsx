@@ -37,6 +37,7 @@ import Search from "@material-ui/icons/Search";
 // core components
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
+import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
 
 import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
 
@@ -69,7 +70,7 @@ class AdminNavbarLinks extends React.Component {
     return (
       <div>
         <div className={classes.searchWrapper}>
-          <CustomInput
+          {/* <CustomInput
             formControlProps={{
               className: classes.margin + " " + classes.search
             }}
@@ -79,12 +80,12 @@ class AdminNavbarLinks extends React.Component {
                 "aria-label": "Search"
               }
             }}
-          />
-          <Button color="white" aria-label="edit" justIcon round>
+          /> */}
+          {/* <Button color="white" aria-label="edit" justIcon round>
             <Search />
-          </Button>
+          </Button> */}
         </div>
-        <Button
+        {/* <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}
           justIcon={window.innerWidth > 959}
           simple={!(window.innerWidth > 959)}
@@ -95,8 +96,8 @@ class AdminNavbarLinks extends React.Component {
           <Hidden mdUp implementation="css">
             <p className={classes.linkText}>Dashboard</p>
           </Hidden>
-        </Button>
-        <div className={classes.manager}>
+        </Button> */}
+        {/* <div className={classes.manager}>
           <Button
             buttonRef={node => {
               this.anchorNotification = node;
@@ -176,8 +177,9 @@ class AdminNavbarLinks extends React.Component {
               </Grow>
             )}
           </Poppers>
-        </div>
+        </div> */}
         <div className={classes.manager}>
+          Olá usuário!
           <Button
             buttonRef={node => {
               this.anchorProfile = node;
@@ -190,7 +192,7 @@ class AdminNavbarLinks extends React.Component {
             onClick={this.handleToggleProfile}
             className={classes.buttonLink}
           >
-            <Person className={classes.icons} />
+            <ArrowDropDown className={classes.icons} />
             <Hidden mdUp implementation="css">
               <p className={classes.linkText}>Profile</p>
             </Hidden>
@@ -222,13 +224,7 @@ class AdminNavbarLinks extends React.Component {
                         onClick={this.handleCloseProfile}
                         className={classes.dropdownItem}
                       >
-                        Profile
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleCloseProfile}
-                        className={classes.dropdownItem}
-                      >
-                        Settings
+                        Perfil
                       </MenuItem>
                       <Divider light />
                       <MenuItem
