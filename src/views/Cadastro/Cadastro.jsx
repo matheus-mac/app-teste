@@ -1,6 +1,6 @@
 import React from "react";
 // nodejs library to set properties for components
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -19,11 +19,11 @@ import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
 // core components
-import GridItem from "components/Grid/GridItem.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
+import GridItem from "components/Grid/GridItem.jsx"
+import GridContainer from "components/Grid/GridContainer.jsx"
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+import CustomTabs from "components/CustomTabs/CustomTabs.jsx"
 import Danger from "components/Typography/Danger.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
@@ -32,27 +32,64 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import Navbar from "components/Navbars/Navbar.jsx";
 import { bugs, website, server } from "variables/general.jsx";
-import { Router, Route, Switch, Redirect, Link } from "react-router-dom";
+import { Router, Route, Switch, Redirect, Link } from "react-router-dom"
 import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
 } from "variables/charts.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-import { Toolbar, FormControlLabel, MenuItem } from "@material-ui/core";
+import Button from "components/CustomButtons/Button.jsx"
+import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx"
+import { Toolbar, FormControlLabel, MenuItem, InputLabel } from "@material-ui/core"
 import routes from "routes.js";
 import PermIdentity from "@material-ui/icons/PermIdentity"
 import PhoneLinkLock from "@material-ui/icons/PhonelinkLock"
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import CardAvatar from "components/Card/CardAvatar.jsx";
-import avatar from "assets/img/faces/userPlaceholder.jpg";
+import CustomInput from "components/CustomInput/CustomInput.jsx"
+import CardAvatar from "components/Card/CardAvatar.jsx"
+import avatar from "assets/img/faces/userPlaceholder.jpg"
 import Address from "@material-ui/icons/Home"
 import AddAPhoto from "@material-ui/icons/AddAPhoto"
-import SwitchComponent from "@material-ui/core/Switch";
+import SwitchComponent from "@material-ui/core/Switch"
 import Select from "@material-ui/core/Select"
-const listaDeEstados = ["AC","AL","AP","AM","BA","CE","DF", "ES", "GO",    "MA",    "MS",    "MT",    "MG",    "PA",
-"PB",    "PR",    "PE",    "PI",    "RJ",    "RN",    "RS",    "RO",    "RR",    "SC",    "SP",    "SE",    "TO"]
+import FormControl from "@material-ui/core/FormControl"
+import FormHelperText from "@material-ui/core/FormHelperText"
+import {KeyboardDatePicker} from "@material-ui/pickers"
+import {MuiPickersUtilsProvider} from "@material-ui/pickers"
+import MomentUtils from "@date-io/moment"
+import moment from "moment"
+import "moment/locale/pt-br"
+moment.locale("pt-br")
+
+const listaDeEstados = 
+[{ key: "AC", value: "Acre" },
+{ key: "AL", value: "Alagoas" },
+{ key: "AP", value: "Amapá" },
+{ key: "AM", value: "Amazonas" },
+{ key: "BA", value: "Bahia" },
+{ key: "CE", value: "Ceará" },
+{ key: "DF", value: "Distrito Federal" },
+{ key: "ES", value: "Espírito Santo" },
+{ key: "GO", value: "Goiás" },
+{ key: "MA", value: "Maranhão" },
+{ key: "MT", value: "Mato Grosso" },
+{ key: "MS", value: "Mato Grosso do Sul" },
+{ key: "MG", value: "Minas Gerais" },
+{ key: "PA", value: "Pará" },
+{ key: "PB", value: "Paraíba" },
+{ key: "PR", value: "Paraná" },
+{ key: "PE", value: "Pernambuco" },
+{ key: "PI", value: "Piauí" },
+{ key: "RJ", value: "Rio de Janeiro" },
+{ key: "RN", value: "Rio Grande do Norte" },
+{ key: "RS", value: "Rio Grande do Sul" },
+{ key: "RO", value: "Rondônia" },
+{ key: "RR", value: "Roraima" },
+{ key: "SC", value: "Santa Catarina" },
+{ key: "SP", value: "São Paulo" },
+{ key: "SE", value: "Sergipe" },
+{ key: "TO", value: "Tocantins" }]
+
+
 
 class Homepage extends React.Component {
   state = {
@@ -61,7 +98,8 @@ class Homepage extends React.Component {
     persons: {},
     cpf: true,
     labeltipoDeUsuario: "CPF",
-    UF : "MG"
+    UF : '',
+    activationDate: new Date()
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -81,11 +119,19 @@ class Homepage extends React.Component {
       );
   }
 
-  handleUFChange = name => event => {
+  handleUFChange = () => event => {
     this.setState({
-      [name]: event.target.value,
-    })
+      UF: event.target.value,
+    },() => {
+      var batata = this.state.UF
+      batata = 1
+    }
+    )
   };
+
+  handleDateChange = () => event =>{
+    this.setState({activationDate: event._d})
+  }
   render() {
     return (
       <div>
@@ -203,12 +249,24 @@ class Homepage extends React.Component {
                           />
                         </GridItem>
                         <GridItem xs={12} sm={12} md={2}>
-                          <Select value = {this.state.UF} onChange={this.handleUFChange('UF')}> 
-                            {listaDeEstados.map((item, i) =>
-                              // console.log(item.value)
-                             <MenuItem value={item}>{item} </MenuItem>
-                            )}
-                          </Select>
+                          <div style={{paddingTop: '27px'}}>
+                          <FormControl>
+                            <InputLabel htmlFor="state-selector">Estado:</InputLabel>
+                            <Select
+                              native
+                              value={this.state.UF}
+                              onChange={this.handleUFChange()}
+                              name="Estado:"
+                              inputProps={{
+                                id: 'state-selector',
+                              }}
+                            > <option value=""/>
+                              {listaDeEstados.map((item, i) =>
+                                <option value={item.key}>{item.value} </option>
+                              )}
+                            </Select>
+                          </FormControl>
+                          </div>
                         </GridItem>
                         </GridContainer>
                         <GridContainer>
@@ -256,11 +314,84 @@ class Homepage extends React.Component {
                   tabName: "Fechaduras",
                   tabIcon: PhoneLinkLock,
                   tabContent: (
-                    <Tasks
-                      checkedIndexes={[0]}
-                      tasksIndexes={[0, 1]}
-                      tasks={website}
-                    />
+                    <div>
+                      <GridContainer>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <CustomInput
+                            labelText="Endereço MAC:"
+                            id="macAddress"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={2}>
+                        <CustomInput
+                            labelText="Versão:"
+                            id="versao"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={2}>
+                          <div style={{paddingTop:"11px"}}>
+                          <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={moment.locale("pt-br")}>
+                            <KeyboardDatePicker
+                              locale="pt-br"
+                              margin="normal"
+                              id="date-picker-dialog"
+                              label="Data de ativação:"
+                              format="DD/MM/YYYY"
+                              value={this.state.activationDate}
+                              onChange={this.handleDateChange()}
+                              KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                              }}
+                            />
+                          </MuiPickersUtilsProvider>
+                          </div>
+                        </GridItem>
+                        </GridContainer>
+                        <GridContainer>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <CustomInput
+                            labelText="Rua:"
+                            id="street"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={2}>
+                          <CustomInput
+                            labelText="Número:"
+                            id="number"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <CustomInput
+                            labelText="Bairro:"
+                            id="neighborhood"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={2}>
+                          <CustomInput
+                            labelText="Complemento:"
+                            id="complement"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                      </GridContainer>
+                  </div>
                   )
                 }
               ]}
