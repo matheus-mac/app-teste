@@ -42,6 +42,8 @@ import Homepage from "views/Homepage/Homepage.jsx"
 import Cadastro from "views/Cadastro/Cadastro.jsx"
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.jsx";
+import PhoneLinkLock from "@material-ui/icons/PhonelinkLock"
+import Fechaduras from "views/Fechaduras/Fechaduras";
 
 const dashboardRoutes = [
   {
@@ -58,6 +60,14 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Edit,
     component: Cadastro,
+    layout: "/admin"
+  },
+  {
+    path: "/fechaduras",
+    name: "Fechaduras",
+    rtlName: "لوحة القيادة",
+    icon: PhoneLinkLock,
+    component: Fechaduras,
     layout: "/admin"
   },
   {

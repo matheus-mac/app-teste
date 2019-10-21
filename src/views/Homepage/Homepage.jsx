@@ -64,18 +64,18 @@ class Homepage extends React.Component {
     const { classes, ...rest } = this.props;
     const { text } = this.state //destucture state
     return (
-      <div>
-        <Toolbar className={classes.container}>
-          <GridContainer>
-            <GridItem xs={12} sm={6} md={6}>
-              teste
+      <div style={{margin: "0px !important"}}>
+          <GridContainer noMargin>
+            <GridItem xs={12} sm={6} md={8}>
+              
             </GridItem>
-            <GridItem xs={12} sm={6} md={6}>
+            <GridItem xs={12} sm={6} md={4}>
+              <div className={classes.rightAlign}>
               <Button color="primary" round onClick={() => this.login()}>Registre-se</Button>
               <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
+              </div>
             </GridItem>
           </GridContainer>
-        </Toolbar>
         </div>
     );
   }

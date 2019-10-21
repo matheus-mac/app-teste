@@ -26,13 +26,16 @@ const style = {
   grid: {
     margin: "0 -15px !important",
     width: "unset"
+  },
+  gridWithouMargin:{
+    margin: "0px !important"
   }
 };
 
 function GridContainer(props) {
   const { classes, children, ...rest } = props;
   return (
-    <Grid container {...rest} className={classes.grid}>
+    <Grid container {...rest} className={props.noMargin ? classes.gridWithouMargin : classes.grid}>
       {children}
     </Grid>
   );
