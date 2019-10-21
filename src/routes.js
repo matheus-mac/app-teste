@@ -44,7 +44,9 @@ import Cadastro from "views/Cadastro/Cadastro.jsx"
 import RTLPage from "views/RTLPage/RTLPage.jsx";
 import PhoneLinkLock from "@material-ui/icons/PhonelinkLock"
 import Fechaduras from "views/Fechaduras/Fechaduras";
-
+import Acessos from "views/Acessos/Acessos"
+import Invasoes from "views/Invasoes/Invasoes.jsx"
+import Suporte from "views/Suporte/Suporte.jsx"
 const dashboardRoutes = [
   {
     path: "/dashboard",
@@ -52,6 +54,14 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
+    layout: "/admin"
+  },
+  {
+    path: "/user",
+    name: "Perfil",
+    rtlName: "ملف تعريفي للمستخدم",
+    icon: Person,
+    component: UserProfile,
     layout: "/admin"
   },
   {
@@ -71,21 +81,37 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/user",
-    name: "User Profile",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: Person,
-    component: UserProfile,
+    path: "/acessos",
+    name: "Acessos",
+    rtlName: "لوحة القيادة",
+    icon: PhoneLinkLock,
+    component: Acessos,
     layout: "/admin"
   },
   {
-    path: "/table",
-    name: "Table List",
-    rtlName: "قائمة الجدول",
-    icon: "content_paste",
-    component: TableList,
+    path: "/invasoes",
+    name: "Invasões",
+    rtlName: "لوحة القيادة",
+    icon: PhoneLinkLock,
+    component: Invasoes,
     layout: "/admin"
   },
+  {
+    path: "/suporte",
+    name: "Suporte",
+    rtlName: "لوحة القيادة",
+    icon: PhoneLinkLock,
+    component: Suporte,
+    layout: "/admin"
+  },
+  // {
+  //   path: "/table",
+  //   name: "Table List",
+  //   rtlName: "قائمة الجدول",
+  //   icon: "content_paste",
+  //   component: TableList,
+  //   layout: "/admin"
+  // },
   // {
   //   path: "/typography",
   //   name: "Typography",
@@ -110,14 +136,14 @@ const dashboardRoutes = [
   //   component: Maps,
   //   layout: "/admin"
   // },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    rtlName: "إخطارات",
-    icon: Notifications,
-    component: NotificationsPage,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/notifications",
+  //   name: "Notifications",
+  //   rtlName: "إخطارات",
+  //   icon: Notifications,
+  //   component: NotificationsPage,
+  //   layout: "/admin"
+  // },
   // {
   //   path: "/rtl-page",
   //   name: "RTL Support",
@@ -134,30 +160,30 @@ const dashboardRoutes = [
   //   component: UpgradeToPro,
   //   layout: "/admin"
   // },
-  {
-    path: "/file-manager",
-    name: "File Manager",
-    rtlName: "",
-    icon: Folder,
-    component: FileUploaderPage,
-    layout: "/admin"
-  },
-  {
-    path: "/api-tester",
-    name: "API Tester",
-    rtlName: "",
-    icon: Save_Alt,
-    component: APITesterPage,
-    layout: "/admin"
-  },
-  {
-    path: "/homepage",
-    name: "Homepage",
-    rtlName: "",
-    icon: Save_Alt,
-    component: Homepage,
-    layout: "/admin"
-  }
+  // {
+  //   path: "/file-manager",
+  //   name: "File Manager",
+  //   rtlName: "",
+  //   icon: Folder,
+  //   component: FileUploaderPage,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/api-tester",
+  //   name: "API Tester",
+  //   rtlName: "",
+  //   icon: Save_Alt,
+  //   component: APITesterPage,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/homepage",
+  //   name: "Homepage",
+  //   rtlName: "",
+  //   icon: Save_Alt,
+  //   component: Homepage,
+  //   layout: "/admin"
+  // }
 ];
 
 export default dashboardRoutes;
