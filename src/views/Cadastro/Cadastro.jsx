@@ -356,39 +356,15 @@ class Homepage extends React.Component {
                         <GridContainer>
                         <GridItem xs={12} sm={12} md={4}>
                           <CustomInput
-                            labelText="Rua:"
-                            id="street"
+                            labelText="Identificador da fechadura:"
+                            id="lockIdentifier"
                             formControlProps={{
                               fullWidth: true
                             }}
                           />
-                        </GridItem>
-                        <GridItem xs={12} sm={12} md={2}>
-                          <CustomInput
-                            labelText="Número:"
-                            id="number"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                          />
-                        </GridItem>
-                        <GridItem xs={12} sm={12} md={4}>
-                          <CustomInput
-                            labelText="Bairro:"
-                            id="neighborhood"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                          />
-                        </GridItem>
-                        <GridItem xs={12} sm={12} md={2}>
-                          <CustomInput
-                            labelText="Complemento:"
-                            id="complement"
-                            formControlProps={{
-                              fullWidth: true
-                            }}
-                          />
+                          <FormHelperText>Esse será o nome da fechadura, selecione nomes intuitivos como: 
+                            Porta da frente
+                          </FormHelperText>
                         </GridItem>
                       </GridContainer>
                   </div>
