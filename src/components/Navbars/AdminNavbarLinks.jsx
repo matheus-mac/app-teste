@@ -38,13 +38,15 @@ import Search from "@material-ui/icons/Search";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
-
+import { Switch, Route, Redirect } from "react-router-dom";
 import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
 
 class AdminNavbarLinks extends React.Component {
   state = {
     openNotifcation: false,
-    openProfile: false
+    openProfile: false,
+    logoutRedirect: false,
+    profileRedirect: false
   };
   handleToggleNotification = () => {
     this.setState(state => ({ openNotifcation: !state.openNotifcation }));
@@ -64,7 +66,22 @@ class AdminNavbarLinks extends React.Component {
     }
     this.setState({ openProfile: false });
   };
+  handleLogout = event => {
+    this.setState({logoutRedirect: true})
+  }
+  handleProfileClick = event =>{
+    this.setState({profileRedirect: true})
+  }
+
   render() {
+    if (this.state.logoutRedirect){
+      {{this.state.logoutRedirect=false}}
+      return <Redirect to="/homepage"/>
+    }
+    if (this.state.profileRedirect){
+      {{this.state.profileRedirect=false}}
+      return <Redirect to="/admin/usuario"/>
+    }
     const { classes } = this.props;
     const { openNotifcation, openProfile } = this.state;
     return (
@@ -221,14 +238,14 @@ class AdminNavbarLinks extends React.Component {
                   <ClickAwayListener onClickAway={this.handleCloseProfile}>
                     <MenuList role="menu">
                       <MenuItem
-                        onClick={this.handleCloseProfile}
+                        onClick={this.handleProfileClick}
                         className={classes.dropdownItem}
                       >
                         Perfil
                       </MenuItem>
                       <Divider light />
                       <MenuItem
-                        onClick={this.handleCloseProfile}
+                        onClick={this.handleLogout}
                         className={classes.dropdownItem}
                       >
                         Logout

@@ -40,7 +40,7 @@ const footerStyle = {
     display: "block"
   },
   right: {
-    padding: "15px 0",
+    padding: "0px 0",
     margin: "0",
     fontSize: "14px",
     float: "right!important"
@@ -48,7 +48,7 @@ const footerStyle = {
   footer: {
     bottom: "0",
     borderTop: "1px solid " + grayColor[11],
-    padding: "15px 0",
+    padding: "0px 0",
     ...defaultFont
   },
   container,

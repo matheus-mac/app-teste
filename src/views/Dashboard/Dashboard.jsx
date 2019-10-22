@@ -81,7 +81,7 @@ class Dashboard extends React.Component {
     const { text } = this.state //destucture state
     return (
       <div>
-        <GridContainer>
+        <GridContainer noMargin>
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="warning" stats icon>
@@ -238,7 +238,7 @@ class Dashboard extends React.Component {
           </GridItem>
         </GridContainer>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={6}>
+          {/* <GridItem xs={12} sm={12} md={6}>
             <CustomTabs
               title="Tasks:"
               headerColor="primary"
@@ -300,7 +300,7 @@ class Dashboard extends React.Component {
                 />
               </CardBody>
             </Card>
-          </GridItem>
+          </GridItem> */}
           </GridContainer>  
       </div>
     );
