@@ -42,6 +42,8 @@ import Button from "components/CustomButtons/Button.jsx";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import { Toolbar } from "@material-ui/core";
 import routes from "routes.js";
+import Login from "views/Login/Login.jsx"
+
 class Homepage extends React.Component {
   state = {
     value: 0,
@@ -76,6 +78,7 @@ class Homepage extends React.Component {
               </div>
             </GridItem>
           </GridContainer>
+          <Login/>
         </div>
     );
   }

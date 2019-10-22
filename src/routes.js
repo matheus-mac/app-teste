@@ -48,6 +48,10 @@ import Acessos from "views/Acessos/Acessos"
 import Invasoes from "views/Invasoes/Invasoes.jsx"
 import Suporte from "views/Suporte/Suporte.jsx"
 import Enderecos from "views/Enderecos/Enderecos.jsx"
+import Address from "@material-ui/icons/Home"
+import Access from "@material-ui/icons/DirectionsWalk"
+import Invasion from "@material-ui/icons/Error"
+import Support from "@material-ui/icons/ContactSupport"
 const dashboardRoutes = [
   {
     path: "/dashboard",
@@ -77,7 +81,7 @@ const dashboardRoutes = [
     path: "/enderecos",
     name: "Enderecos",
     rtlName: "لوحة القيادة",
-    icon: PhoneLinkLock,
+    icon: Address,
     component: Enderecos,
     layout: "/admin"
   },
@@ -93,7 +97,7 @@ const dashboardRoutes = [
     path: "/acessos",
     name: "Acessos",
     rtlName: "لوحة القيادة",
-    icon: PhoneLinkLock,
+    icon: Access,
     component: Acessos,
     layout: "/admin"
   },
@@ -101,7 +105,7 @@ const dashboardRoutes = [
     path: "/invasoes",
     name: "Invasões",
     rtlName: "لوحة القيادة",
-    icon: PhoneLinkLock,
+    icon: Invasion,
     component: Invasoes,
     layout: "/admin"
   },
@@ -109,7 +113,7 @@ const dashboardRoutes = [
     path: "/suporte",
     name: "Suporte",
     rtlName: "لوحة القيادة",
-    icon: PhoneLinkLock,
+    icon: Support,
     component: Suporte,
     layout: "/admin"
   },
