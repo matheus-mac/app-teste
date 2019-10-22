@@ -47,6 +47,7 @@ import Fechaduras from "views/Fechaduras/Fechaduras";
 import Acessos from "views/Acessos/Acessos"
 import Invasoes from "views/Invasoes/Invasoes.jsx"
 import Suporte from "views/Suporte/Suporte.jsx"
+import Enderecos from "views/Enderecos/Enderecos.jsx"
 const dashboardRoutes = [
   {
     path: "/dashboard",
@@ -70,6 +71,14 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Edit,
     component: Cadastro,
+    layout: "/admin"
+  },
+  {
+    path: "/enderecos",
+    name: "Enderecos",
+    rtlName: "لوحة القيادة",
+    icon: PhoneLinkLock,
+    component: Enderecos,
     layout: "/admin"
   },
   {
