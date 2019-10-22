@@ -31,8 +31,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardAvatar from "components/Card/CardAvatar.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-
-import avatar from "assets/img/faces/marc.jpg";
+import AddAPhoto from "@material-ui/icons/AddAPhoto"
+import avatar from "assets/img/faces/userPlaceholder.jpg"
+import { FormControlLabel } from "@material-ui/core"
+import SwitchComponent from "@material-ui/core/Switch"
 
 const styles = {
   cardCategoryWhite: {
@@ -50,14 +52,144 @@ const styles = {
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none"
+  },
+  rightAlign: {
+    textAlign: "right"
   }
 };
+
+function updateImage() {
+  var teste = "batata"
+  teste = 5
+}
+
+function handleSwitchOnChange() {
+  // this.setState({ cpf: !props.cpf }
+  // , () => this.setState({ labeltipoDeUsuario: props.cpf ? "CPF" : "CNPJ" })
+  //);
+}
+
 
 function UserProfile(props) {
   const { classes } = props;
   return (
     <div>
       <GridContainer>
+        <Card>
+          <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}></h4>
+            {/* <p className={classes.cardCategoryWhite}>Complete seu perfil!</p> */}
+          </CardHeader>
+          <CardBody>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={8}>
+                <div>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={1}>
+                      <CustomInput
+                        labelText="Id:"
+                        id="id"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          disabled: true
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={3}>
+                      <CustomInput
+                        labelText="Usuário:"
+                        id="user"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <CustomInput
+                        labelText="Email:"
+                        id="emailAddress"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <div style={{ paddingTop: '36px' }}>
+                        CNPJ
+                          <FormControlLabel style={{ paddingLeft: '36px' }}
+                          control={
+                            <SwitchComponent onChange={handleSwitchOnChange()} checked={props.cpf} color="primary">
+                            </SwitchComponent>
+                          }
+                        // label={props.labeltipoDeUsuario}
+                        >
+                        </FormControlLabel>
+                        CPF
+                          </div>
+                    </GridItem>
+
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <CustomInput
+                        labelText="RFID UUID:"
+                        id="rfidTag"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <CustomInput
+                        labelText="Telefone:"
+                        id="phoneNumber"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <CustomInput
+                        labelText={props.labeltipoDeUsuario + ":"}
+                        id="cpfCNPJ"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                      />
+                    </GridItem>
+                  </GridContainer>
+                </div>
+              </GridItem>
+              <GridItem xs={12} sm={12} md={4} >
+                <GridContainer>
+                  <CardAvatar profile>
+                    <a onClick={updateImage()}>
+                      <img src={avatar} alt="..." />
+                    </a>
+                  </CardAvatar>
+                </GridContainer>
+                <GridContainer>
+                  <Button center round color="info">
+                    <AddAPhoto />
+                    Editar
+                </Button>
+                </GridContainer>
+              </GridItem>
+            </GridContainer>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+                <div style={{ paddingTop: '36px' }} className={classes.rightAlign}>
+                  <Button color="primary">Alterar senha</Button>
+                  <Button color="primary">Salvar</Button>
+                </div>
+              </GridItem>
+            </GridContainer>
+          </CardBody>
+        </Card>
+      </GridContainer>
+      {/* <GridContainer>
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
@@ -189,7 +321,7 @@ function UserProfile(props) {
             </CardBody>
           </Card>
         </GridItem>
-      </GridContainer>
+      </GridContainer> */}
     </div>
   );
 }

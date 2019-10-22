@@ -76,7 +76,7 @@ function UserProfile(props) {
                 <GridContainer style={{flex: "1"}}>
                     <GridItem xs={12} sm={12} md={3}></GridItem>
                     <GridItem xs={12} sm={12} md={5}>
-                        <a href="www.google.com">Esqueceu sua senha?</a>
+                        <a href="https://www.google.com">Esqueceu sua senha?</a>
                     </GridItem>
                     <GridItem xs={12} sm={12} md={4} className={classes.rightAlign}>
                         <Button color="primary" round>Login</Button>

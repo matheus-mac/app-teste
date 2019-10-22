@@ -53,41 +53,41 @@ import SwitchComponent from "@material-ui/core/Switch"
 import Select from "@material-ui/core/Select"
 import FormControl from "@material-ui/core/FormControl"
 import FormHelperText from "@material-ui/core/FormHelperText"
-import {KeyboardDatePicker} from "@material-ui/pickers"
-import {MuiPickersUtilsProvider} from "@material-ui/pickers"
+import { KeyboardDatePicker } from "@material-ui/pickers"
+import { MuiPickersUtilsProvider } from "@material-ui/pickers"
 import MomentUtils from "@date-io/moment"
 import moment from "moment"
 import "moment/locale/pt-br"
 moment.locale("pt-br")
 
-const listaDeEstados = 
-[{ key: "AC", value: "Acre" },
-{ key: "AL", value: "Alagoas" },
-{ key: "AP", value: "Amapá" },
-{ key: "AM", value: "Amazonas" },
-{ key: "BA", value: "Bahia" },
-{ key: "CE", value: "Ceará" },
-{ key: "DF", value: "Distrito Federal" },
-{ key: "ES", value: "Espírito Santo" },
-{ key: "GO", value: "Goiás" },
-{ key: "MA", value: "Maranhão" },
-{ key: "MT", value: "Mato Grosso" },
-{ key: "MS", value: "Mato Grosso do Sul" },
-{ key: "MG", value: "Minas Gerais" },
-{ key: "PA", value: "Pará" },
-{ key: "PB", value: "Paraíba" },
-{ key: "PR", value: "Paraná" },
-{ key: "PE", value: "Pernambuco" },
-{ key: "PI", value: "Piauí" },
-{ key: "RJ", value: "Rio de Janeiro" },
-{ key: "RN", value: "Rio Grande do Norte" },
-{ key: "RS", value: "Rio Grande do Sul" },
-{ key: "RO", value: "Rondônia" },
-{ key: "RR", value: "Roraima" },
-{ key: "SC", value: "Santa Catarina" },
-{ key: "SP", value: "São Paulo" },
-{ key: "SE", value: "Sergipe" },
-{ key: "TO", value: "Tocantins" }]
+const listaDeEstados =
+  [{ key: "AC", value: "Acre" },
+  { key: "AL", value: "Alagoas" },
+  { key: "AP", value: "Amapá" },
+  { key: "AM", value: "Amazonas" },
+  { key: "BA", value: "Bahia" },
+  { key: "CE", value: "Ceará" },
+  { key: "DF", value: "Distrito Federal" },
+  { key: "ES", value: "Espírito Santo" },
+  { key: "GO", value: "Goiás" },
+  { key: "MA", value: "Maranhão" },
+  { key: "MT", value: "Mato Grosso" },
+  { key: "MS", value: "Mato Grosso do Sul" },
+  { key: "MG", value: "Minas Gerais" },
+  { key: "PA", value: "Pará" },
+  { key: "PB", value: "Paraíba" },
+  { key: "PR", value: "Paraná" },
+  { key: "PE", value: "Pernambuco" },
+  { key: "PI", value: "Piauí" },
+  { key: "RJ", value: "Rio de Janeiro" },
+  { key: "RN", value: "Rio Grande do Norte" },
+  { key: "RS", value: "Rio Grande do Sul" },
+  { key: "RO", value: "Rondônia" },
+  { key: "RR", value: "Roraima" },
+  { key: "SC", value: "Santa Catarina" },
+  { key: "SP", value: "São Paulo" },
+  { key: "SE", value: "Sergipe" },
+  { key: "TO", value: "Tocantins" }]
 
 
 
@@ -98,7 +98,7 @@ class Homepage extends React.Component {
     persons: {},
     cpf: true,
     labeltipoDeUsuario: "CPF",
-    UF : '',
+    UF: '',
     activationDate: new Date()
   };
   handleChange = (event, value) => {
@@ -113,26 +113,27 @@ class Homepage extends React.Component {
     var teste = "batata"
     teste = 5
   }
-  handleSwitchOnChange = () =>{
-    this.setState({ cpf : !this.state.cpf}
-      , () => this.setState({labeltipoDeUsuario: this.state.cpf ? "CPF" : "CNPJ"})  
-      );
+  handleSwitchOnChange = () => {
+    this.setState({ cpf: !this.state.cpf }
+      , () => this.setState({ labeltipoDeUsuario: this.state.cpf ? "CPF" : "CNPJ" })
+    );
   }
 
   handleUFChange = () => event => {
     this.setState({
       UF: event.target.value,
-    },() => {
+    }, () => {
       var batata = this.state.UF
       batata = 1
     }
     )
   };
 
-  handleDateChange = () => event =>{
-    this.setState({activationDate: event._d})
+  handleDateChange = () => event => {
+    this.setState({ activationDate: event._d })
   }
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <GridContainer>
@@ -159,7 +160,7 @@ class Homepage extends React.Component {
                         </Button>
                       </GridContainer>
                       <GridContainer>
-                        <GridItem xs={12} sm={12} md={6}>
+                        <GridItem xs={12} sm={12} md={4}>
                           <CustomInput
                             labelText="Usuário:"
                             id="user"
@@ -168,7 +169,7 @@ class Homepage extends React.Component {
                             }}
                           />
                         </GridItem>
-                        <GridItem xs={12} sm={12} md={4}>
+                        <GridItem xs={12} sm={12} md={5}>
                           <CustomInput
                             labelText="Email:"
                             id="emailAddress"
@@ -177,51 +178,59 @@ class Homepage extends React.Component {
                             }}
                           />
                         </GridItem>
-                        <div style={{paddingTop: '36px'}}>
-                          <GridItem xs={12} sm={12} md={2}>
-                            <FormControlLabel
-                              control ={
-                              <SwitchComponent onChange={this.handleSwitchOnChange} checked={this.state.cpf} color="primary">
-                              </SwitchComponent>
+                        <GridItem xs={12} sm={12} md={3}>
+                          <div style={{ paddingTop: '36px' }}>
+                            CNPJ
+                          <FormControlLabel style={{ paddingLeft: '36px' }}
+                              control={
+                                <SwitchComponent onChange={this.handleSwitchOnChange} checked={this.state.cpf} color="primary">
+                                </SwitchComponent>
                               }
-                              label={this.state.labeltipoDeUsuario}
-                              >
+                            // label={this.state.labeltipoDeUsuario}
+                            >
                             </FormControlLabel>
+                            CPF
+                          </div>
+                        </GridItem>
 
-                          </GridItem>
-                        </div>
                       </GridContainer>
                       <GridContainer>
-                      <GridItem xs={12} sm={12} md={4}>
-                        <CustomInput
-                          labelText="RFID UUID:"
-                          id="rfidTag"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem xs={12} sm={12} md={4}>
-                        <CustomInput
-                          labelText="Telefone:"
-                          id="phoneNumber"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem xs={12} sm={12} md={4}>
-                        <CustomInput
-                          labelText={this.state.labeltipoDeUsuario + ":"}
-                          id="cpfCNPJ"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-
-                        />
-                      </GridItem>
-                    </GridContainer>
-                  </div>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <CustomInput
+                            labelText="RFID UUID:"
+                            id="rfidTag"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <CustomInput
+                            labelText="Telefone:"
+                            id="phoneNumber"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <CustomInput
+                            labelText={this.state.labeltipoDeUsuario + ":"}
+                            id="cpfCNPJ"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                          />
+                        </GridItem>
+                      </GridContainer>
+                      <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                          <div style={{ paddingTop: '36px' }} className={classes.rightAlign}>
+                            <Button color="primary">Cadastrar</Button>
+                          </div>
+                        </GridItem>
+                      </GridContainer>
+                    </div>
                   )
                 },
                 {
@@ -249,27 +258,27 @@ class Homepage extends React.Component {
                           />
                         </GridItem>
                         <GridItem xs={12} sm={12} md={2}>
-                          <div style={{paddingTop: '27px'}}>
-                          <FormControl>
-                            <InputLabel htmlFor="state-selector">Estado:</InputLabel>
-                            <Select
-                              native
-                              value={this.state.UF}
-                              onChange={this.handleUFChange()}
-                              name="Estado:"
-                              inputProps={{
-                                id: 'state-selector',
-                              }}
-                            > <option value=""/>
-                              {listaDeEstados.map((item, i) =>
-                                <option value={item.key}>{item.value} </option>
-                              )}
-                            </Select>
-                          </FormControl>
+                          <div style={{ paddingTop: '27px' }}>
+                            <FormControl>
+                              <InputLabel htmlFor="state-selector">Estado:</InputLabel>
+                              <Select
+                                native
+                                value={this.state.UF}
+                                onChange={this.handleUFChange()}
+                                name="Estado:"
+                                inputProps={{
+                                  id: 'state-selector',
+                                }}
+                              > <option value="" />
+                                {listaDeEstados.map((item, i) =>
+                                  <option value={item.key}>{item.value} </option>
+                                )}
+                              </Select>
+                            </FormControl>
                           </div>
                         </GridItem>
-                        </GridContainer>
-                        <GridContainer>
+                      </GridContainer>
+                      <GridContainer>
                         <GridItem xs={12} sm={12} md={4}>
                           <CustomInput
                             labelText="Rua:"
@@ -307,7 +316,14 @@ class Homepage extends React.Component {
                           />
                         </GridItem>
                       </GridContainer>
-                  </div>
+                      <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                          <div style={{ paddingTop: '36px' }} className={classes.rightAlign}>
+                            <Button color="primary">Cadastrar</Button>
+                          </div>
+                        </GridItem>
+                      </GridContainer>
+                    </div>
                   )
                 },
                 {
@@ -326,7 +342,7 @@ class Homepage extends React.Component {
                           />
                         </GridItem>
                         <GridItem xs={12} sm={12} md={2}>
-                        <CustomInput
+                          <CustomInput
                             labelText="Versão:"
                             id="versao"
                             formControlProps={{
@@ -335,25 +351,25 @@ class Homepage extends React.Component {
                           />
                         </GridItem>
                         <GridItem xs={12} sm={12} md={2}>
-                          <div style={{paddingTop:"11px"}}>
-                          <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={moment.locale("pt-br")}>
-                            <KeyboardDatePicker
-                              locale="pt-br"
-                              margin="normal"
-                              id="date-picker-dialog"
-                              label="Data de ativação:"
-                              format="DD/MM/YYYY"
-                              value={this.state.activationDate}
-                              onChange={this.handleDateChange()}
-                              KeyboardButtonProps={{
-                                'aria-label': 'change date',
-                              }}
-                            />
-                          </MuiPickersUtilsProvider>
+                          <div style={{ paddingTop: "11px" }}>
+                            <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={moment.locale("pt-br")}>
+                              <KeyboardDatePicker
+                                locale="pt-br"
+                                margin="normal"
+                                id="date-picker-dialog"
+                                label="Data de ativação:"
+                                format="DD/MM/YYYY"
+                                value={this.state.activationDate}
+                                onChange={this.handleDateChange()}
+                                KeyboardButtonProps={{
+                                  'aria-label': 'change date',
+                                }}
+                              />
+                            </MuiPickersUtilsProvider>
                           </div>
                         </GridItem>
-                        </GridContainer>
-                        <GridContainer>
+                      </GridContainer>
+                      <GridContainer>
                         <GridItem xs={12} sm={12} md={4}>
                           <CustomInput
                             labelText="Identificador da fechadura:"
@@ -362,18 +378,25 @@ class Homepage extends React.Component {
                               fullWidth: true
                             }}
                           />
-                          <FormHelperText>Esse será o nome da fechadura, selecione nomes intuitivos como: 
+                          <FormHelperText>Esse será o nome da fechadura, selecione nomes intuitivos como:
                             Porta da frente
                           </FormHelperText>
                         </GridItem>
                       </GridContainer>
-                  </div>
+                      <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                          <div className={classes.rightAlign}>
+                            <Button color="primary">Cadastrar</Button>
+                          </div>
+                        </GridItem>
+                      </GridContainer>
+                    </div>
                   )
                 }
               ]}
             />
           </GridItem>
-          </GridContainer>
+        </GridContainer>
 
       </div>
     );
