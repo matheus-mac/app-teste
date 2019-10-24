@@ -88,6 +88,12 @@ const tableStyle = theme => ({
     display: "table-row",
     outline: "none",
     verticalAlign: "middle"
+  },
+  rightAlign:{
+    textAlign:"right"
+  },
+  noPadding:{
+    padding: "0px !important"
   }
 });
 

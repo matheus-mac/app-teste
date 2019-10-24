@@ -73,6 +73,7 @@ function Snackbar({ ...props }) {
           <span className={messageClasses}>{message}</span>
         </div>
       }
+      autoHideDuration={6000}
       action={action}
       ContentProps={{
         classes: {

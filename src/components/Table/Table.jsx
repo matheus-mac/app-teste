@@ -29,6 +29,7 @@ import tableStyle from "assets/jss/material-dashboard-react/components/tableStyl
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor } = props;
+  // const dataSize = tableData.length
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -54,7 +55,9 @@ function CustomTable({ ...props }) {
               <TableRow key={key} className={classes.tableBodyRow}>
                 {prop.map((prop, key) => {
                   return (
-                    <TableCell className={classes.tableCell} key={key}>
+                    <TableCell className={classes.tableCell,
+                      tableData.length===key && props.lastColumnRight ?
+                     classes.rightAlign : ""} key={key}>
                       {prop}
                     </TableCell>
                   );
