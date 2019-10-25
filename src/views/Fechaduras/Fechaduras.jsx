@@ -73,6 +73,7 @@ class Fechaduras extends React.Component {
     popUpVincularUsuario: false,
     popUpDesvincularUsuario: false,
     popUpEditarFechadura: false,
+    popUpConfirmarDelecao: false,
     snackbarSuccess: false,
     snackbarFail: false,
     activationDate: new Date()
@@ -102,6 +103,14 @@ class Fechaduras extends React.Component {
     this.setState({ popUpEditarFechadura: false });
   };
 
+  handleClickOpenpopUpConfirmarDelecao = () => {
+    this.setState({ popUpConfirmarDelecao: true });
+  };
+
+  handleClosepopUpConfirmarDelecao = () => {
+    this.setState({ popUpConfirmarDelecao: false });
+  };
+  
   handleSuccessNotification = () => {
     this.setState({ snackbarSuccess: true });
     this.handleCloseVincularUsuario()
@@ -165,7 +174,7 @@ class Fechaduras extends React.Component {
         </IconButton>
       </Tooltip>
       <Tooltip title="Deletar fechadura">
-        <IconButton color="transparent">
+        <IconButton color="transparent" onClick={this.handleClickOpenpopUpConfirmarDelecao}>
           <Delete />
         </IconButton>
       </Tooltip>
@@ -320,6 +329,28 @@ class Fechaduras extends React.Component {
               <Button onClick={this.handleSuccessNotification} color="primary">
                 Salvar Alterações
               </Button>
+            </DialogActions>
+          </Dialog>
+
+          <Dialog
+            open={this.state.popUpConfirmarDelecao}
+            onClose={this.handleClosepopUpConfirmarDelecao}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Deletar Fechadura"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Esta ação não poderá ser desfeita. Todo o registro relativo à mesma será apagado.
+          </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClosepopUpConfirmarDelecao} color="primary">
+                Discordo
+          </Button>
+              <Button onClick={this.handleClosepopUpConfirmarDelecao} color="primary" autoFocus>
+                Concordo
+          </Button>
             </DialogActions>
           </Dialog>
 
