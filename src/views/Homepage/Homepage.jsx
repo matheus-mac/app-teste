@@ -43,12 +43,14 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 import { Toolbar } from "@material-ui/core";
 import routes from "routes.js";
 import Login from "views/Login/Login.jsx"
+import Dashboard from "views/Dashboard/Dashboard";
 
 class Homepage extends React.Component {
   state = {
     value: 0,
     text: "Next",
-    persons: {}
+    persons: {},
+    showLoginWindow: false
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -59,7 +61,15 @@ class Homepage extends React.Component {
   };
 
   login = () =>{
-    this.props.history.push("/admin/Dashboard")
+    this.setState({showLoginWindow: true})
+  }
+
+  loginRedirect() {
+    // this.props.history.push("/admin/Dashboard")
+    // <Route path="admin/dashboard" component={Dashboard}/>
+    // <Link to="/cadastro/" className="btn">Cadastre-se</Link>
+
+    return <Redirect to="admin/dashboard"/>
   }
 
   render() {
@@ -67,18 +77,23 @@ class Homepage extends React.Component {
     const { text } = this.state //destucture state
     return (
       <div style={{margin: "0px !important"}}>
+
           <GridContainer noMargin>
             <GridItem xs={12} sm={6} md={8}>
-              
+
             </GridItem>
+            {!this.state.showLoginWindow &&
             <GridItem xs={12} sm={6} md={4}>
               <div className={classes.rightAlign}>
               <Button color="primary" round onClick={() => this.login()}>Registre-se</Button>
               <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
               </div>
             </GridItem>
+            }
           </GridContainer>
+          {this.state.showLoginWindow &&
           <Login/>
+          }
         </div>
     );
   }

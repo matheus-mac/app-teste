@@ -3,7 +3,6 @@ import React from "react";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -11,11 +10,16 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardAvatar from "components/Card/CardAvatar.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
 
-import avatar from "assets/img/faces/marc.jpg";
 
 const styles = {
   cardCategoryWhite: {
@@ -42,8 +46,9 @@ const styles = {
   }
 };
 
-function UserProfile(props) {
+function Login(props) {
   const { classes } = props;
+  const popupEsqueciMinhaSenha = false
   return (
     <div>
       <GridContainer noMargin>
@@ -59,40 +64,78 @@ function UserProfile(props) {
             </CardHeader>
             <CardBody>
               <GridContainer className={classes.flex}>
-                <center>
-              <GridItem xs={12} sm={12} md={12}>
+              <GridItem xs={12} sm={12} md={2}/>
+              <GridItem xs={12} sm={12} md={8}>
                   <CustomInput
-                    labelText="Email address"
+                    labelText="Email ou CPF/CNPJ:"
                     id="email-address"
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
-                </center>
+              </GridContainer>
+              <GridContainer className={classes.flex}>
+              <GridItem xs={12} sm={12} md={2}/>
+              <GridItem xs={12} sm={12} md={8}>
+                  <CustomInput
+                    labelText="Senha"
+                    id="password"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
               </GridContainer>
             </CardBody>
             <CardFooter>
                 <GridContainer style={{flex: "1"}}>
                     <GridItem xs={12} sm={12} md={3}></GridItem>
-                    <GridItem xs={12} sm={12} md={5}>
-                        <a href="https://www.google.com">Esqueceu sua senha?</a>
+                    <GridItem xs={12} sm={12} md={5}  style={{marginTop:"14px"}}>
+                        <div>
+                          <a href="https://www.google.com">Esqueceu sua senha?</a>
+                        </div>
                     </GridItem>
                     <GridItem xs={12} sm={12} md={4} className={classes.rightAlign}>
+                        <Link to="admin/dashboard">
                         <Button color="primary" round>Login</Button>
+                        </Link>
                     </GridItem>
                 </GridContainer>
             </CardFooter>
           </Card>
         </GridItem>
-        
+        {/* <Dialog open={popupEsqueciMinhaSenha} onClose={this.handleCloseVincularUsuario} aria-labelledby="form-dialog-title">
+            <DialogTitle>Vincular Usuário</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Insira o email ou CPF/CNPJ do usuário para vincular:
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="vincula-usuario-field"
+                // label="Email Address"
+                type="email"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleCloseVincularUsuario} color="primary">
+                Cancelar
+              </Button>
+              <Button onClick={this.handleSuccessNotification} color="primary">
+                Vincular
+              </Button>
+            </DialogActions>
+          </Dialog> */}
       </GridContainer>
     </div>
   );
 }
 
-UserProfile.propTypes = {
+Login.propTypes = {
   classes: PropTypes.object
 };
 
-export default withStyles(styles)(UserProfile);
+export default withStyles(styles)(Login);

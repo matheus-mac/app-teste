@@ -99,7 +99,8 @@ class Homepage extends React.Component {
     cpf: true,
     labeltipoDeUsuario: "CPF",
     UF: '',
-    activationDate: new Date()
+    activationDate: new Date(),
+    lockAddress: ''
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -123,8 +124,14 @@ class Homepage extends React.Component {
     this.setState({
       UF: event.target.value,
     }, () => {
-      var batata = this.state.UF
-      batata = 1
+    }
+    )
+  };
+
+  handleAddressChange = () => event => {
+    this.setState({
+      lockAddress: event.target.value,
+    }, () => {
     }
     )
   };
@@ -381,6 +388,28 @@ class Homepage extends React.Component {
                           <FormHelperText>Esse será o nome da fechadura, selecione nomes intuitivos como:
                             Porta da frente
                           </FormHelperText>
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={4}>
+                          <div style={{ paddingTop: '27px' }}>
+                            <FormControl>
+                              <InputLabel htmlFor="address">Endereço:</InputLabel>
+                              <Select
+                                native
+                                value={this.state.lockAddress}
+                                onChange={this.handleAddressChange()}
+                                name="Endereço:"
+                                inputProps={{
+                                  id: 'address-selector',
+                                }}
+                              >
+                                <option value=""></option>
+                                <option value="endereço1">Endereço 1</option>
+                                <option value="endereço2">Endereço 2</option>
+                                <option value="endereço3">Endereço 3</option>
+                                <option value="endereço4">Endereço 4</option>
+                              </Select>
+                            </FormControl>
+                          </div>
                         </GridItem>
                       </GridContainer>
                       <GridContainer>
