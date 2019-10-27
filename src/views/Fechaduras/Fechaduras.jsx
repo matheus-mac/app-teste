@@ -21,6 +21,7 @@ import Edit from "@material-ui/icons/Edit"
 import Delete from "@material-ui/icons/Delete"
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
+import CardHeader from "components/Card/CardHeader.jsx";
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -164,12 +165,10 @@ class Fechaduras extends React.Component {
           <GridItem xs={12} sm={6} md={1} />
           <GridItem xs={12} sm={6} md={10}>
             <Card>
-              {/* <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Abaixo estão todas as fechaduras:</h4>
-            <p className={classes.cardCategoryWhite}>
-              Abaixo estão todas as fechaduras:
-            </p>
-          </CardHeader> */}
+            <CardHeader color="primary">
+              <h4 className={classes.cardTitleWhite}></h4>
+              {/* <p className={classes.cardCategoryWhite}>Complete seu perfil!</p> */}
+            </CardHeader>
               <CardBody>
                 <Table
                   tableHeaderColor="primary"
@@ -297,7 +296,7 @@ class Fechaduras extends React.Component {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <div style={{ paddingTop: '27px', display: "flex" }}>
-                    <FormControl>
+                    <FormControl style={{width: "100%"}}>
                       <InputLabel htmlFor="address">Endereço:</InputLabel>
                       <Select
                         native

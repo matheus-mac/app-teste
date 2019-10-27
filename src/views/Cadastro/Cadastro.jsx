@@ -264,9 +264,9 @@ class Homepage extends React.Component {
                             }}
                           />
                         </GridItem>
-                        <GridItem xs={12} sm={12} md={2}>
+                        <GridItem xs={12} sm={12} md={4}>
                           <div style={{ paddingTop: '27px' }}>
-                            <FormControl>
+                            <FormControl style={{width: "100%"}}>
                               <InputLabel htmlFor="state-selector">Estado:</InputLabel>
                               <Select
                                 native
@@ -391,7 +391,7 @@ class Homepage extends React.Component {
                         </GridItem>
                         <GridItem xs={12} sm={12} md={4}>
                           <div style={{ paddingTop: '27px', display:"flex" }}>
-                            <FormControl>
+                            <FormControl style={{width: "100%"}}>
                               <InputLabel htmlFor="address">Endereço:</InputLabel>
                               <Select
                                 native

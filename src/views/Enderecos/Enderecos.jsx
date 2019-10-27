@@ -33,10 +33,12 @@ import Close from "@material-ui/icons/Close"
 import { KeyboardDatePicker } from "@material-ui/pickers"
 import { MuiPickersUtilsProvider } from "@material-ui/pickers"
 import FormHelperText from "@material-ui/core/FormHelperText"
+import CardHeader from "components/Card/CardHeader.jsx";
 import MomentUtils from "@date-io/moment"
 import moment from "moment"
 import "moment/locale/pt-br"
 moment.locale("pt-br")
+
 
 const listaDeEstados =
   [{ key: "AC", value: "Acre" },
@@ -160,12 +162,10 @@ class Enderecos extends React.Component {
           <GridItem xs={12} sm={6} md={1} />
           <GridItem xs={12} sm={6} md={10}>
             <Card>
-              {/* <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Abaixo estão todas as fechaduras:</h4>
-            <p className={classes.cardCategoryWhite}>
-              Abaixo estão todas as fechaduras:
-            </p>
-          </CardHeader> */}
+            <CardHeader color="primary">
+              <h4 className={classes.cardTitleWhite}></h4>
+              {/* <p className={classes.cardCategoryWhite}>Complete seu perfil!</p> */}
+            </CardHeader>
               <CardBody>
                 <Table
                   tableHeaderColor="primary"
@@ -205,7 +205,7 @@ class Enderecos extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={12} md={4}>
                     <div style={{ paddingTop: '27px' }}>
-                      <FormControl>
+                      <FormControl style={{width: "100%"}}>
                         <InputLabel htmlFor="state-selector">Estado:</InputLabel>
                         <Select
                           native
