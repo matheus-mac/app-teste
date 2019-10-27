@@ -8,6 +8,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import { Toolbar } from "@material-ui/core";
 import Login from "views/Login/Login.jsx"
+import Registrar from "views/Registrar/Registrar.jsx"
 import logo from "assets/img/reactlogo.png";
 import AppBar from '@material-ui/core/AppBar';
 
@@ -15,7 +16,9 @@ class Homepage extends React.Component {
   state = {
     value: 0,
     text: "Next",
-    persons: {}
+    persons: {},
+    showRegisterWindow: false,
+    showLoginWindow: false
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -27,6 +30,10 @@ class Homepage extends React.Component {
 
   login = () => {
     this.setState({ showLoginWindow: true })
+  }
+
+  register = () =>{
+    this.setState({ showRegisterWindow: true })
   }
 
   closeForgetPassword = () => {
@@ -42,7 +49,7 @@ class Homepage extends React.Component {
     const { text } = this.state //destucture state
     return (
       <div style={{ margin: "0px !important" }}>
-        {!this.state.showLoginWindow &&
+        {!this.state.showLoginWindow && !this.state.showRegisterWindow  &&
           <AppBar style={{ background: '#9c27b0' }} position="static">
             <Toolbar>
               <div className={classes.logoImage + " " + classes.flex + " " + classes.leftAlign}>
@@ -55,7 +62,7 @@ class Homepage extends React.Component {
                                 fontWeight: "bold",
                                 fontSize: "medium"}} 
                                 round
-                                onClick={() => this.login()}>
+                                onClick={() => this.register()}>
                   Registre-se
                 </Button>
                 <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
@@ -65,6 +72,9 @@ class Homepage extends React.Component {
         }
         {this.state.showLoginWindow &&
           <Login />
+        }
+        {this.state.showRegisterWindow &&
+          <Registrar />
         }
       </div>
     );
