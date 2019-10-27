@@ -390,7 +390,7 @@ class Homepage extends React.Component {
                           </FormHelperText>
                         </GridItem>
                         <GridItem xs={12} sm={12} md={4}>
-                          <div style={{ paddingTop: '27px' }}>
+                          <div style={{ paddingTop: '27px', display:"flex" }}>
                             <FormControl>
                               <InputLabel htmlFor="address">Endereço:</InputLabel>
                               <Select

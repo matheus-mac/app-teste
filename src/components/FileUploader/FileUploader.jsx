@@ -5,8 +5,8 @@ import TableList from "../Lists/tableList"
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 // import AWS-SDK from '../../../node-modules/aws-sdk/dist/aws-sdk.min.js'
-import awsSdk from "../../../node_modules/aws-sdk/dist/aws-sdk-react-native"
-import awsSdk_S3Client from "../../../node_modules/aws-sdk/clients/s3"
+// import awsSdk from "../../../node_modules/aws-sdk/dist/aws-sdk-react-native"
+// import awsSdk_S3Client from "../../../node_modules/aws-sdk/clients/s3"
 // const account = {
 //   name: "smartlockfilebucket",
 //   sas: "se=2020-04-30&sp=rwdlac&sv=2018-03-28&ss=b&srt=sco&sig=dB/uIfHWxC%2Bknj5h3Id13xQYN0sXPwj7ywSLCCul4%2BA%3D"
