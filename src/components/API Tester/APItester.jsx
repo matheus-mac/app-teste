@@ -3,21 +3,13 @@ import React from "react";
 import Axios from "axios";
 // Promise based HTTP client for the browser and node.js
 
-
-import classnames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import TableList from '../Lists/tableList';
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
 import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-// @material-ui/icons
-import Edit from "@material-ui/icons/Edit";
-import View from "@material-ui/icons/Visibility"
-import Close from "@material-ui/icons/Close";
 // core components
 import listsStyle from "assets/jss/material-dashboard-react/components/listsStyle.jsx";
 import CardBody from "components/Card/CardBody.jsx";

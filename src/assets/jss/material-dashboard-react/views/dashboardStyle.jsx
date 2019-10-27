@@ -103,6 +103,9 @@ const dashboardStyle = {
   rightAlign:{
     textAlign:"right"
   },
+  leftAlign:{
+    textAlign:"left !important"
+  },
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
       color: "rgba(255,255,255,.62)",
@@ -129,6 +132,44 @@ const dashboardStyle = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  cardCategoryWhite: {
+    color: "rgba(255,255,255,.62)",
+    margin: "0",
+    fontSize: "14px",
+    marginTop: "0",
+    marginBottom: "0"
+  },
+  cardTitleWhite: {
+    color: "#FFFFFF",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "300",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none"
+  }, 
+  rightAlign:{
+      textAlign: "right"
+  },
+  flex:{
+      flex: 1
+  },
+  logoImage: {
+    width: "30px",
+    display: "inline-block",
+    // maxHeight: "30px",
+    marginLeft: "10px",
+    marginRight: "15px",
+    verticalAlign: "center",
+    textAlign: "center"
+  },
+  img: {
+    width: "50px",
+    top: "22px",
+    // position: "absolute",
+    verticalAlign: "middle",
+    border: "0"
   }
 };
 

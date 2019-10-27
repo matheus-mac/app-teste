@@ -44,13 +44,14 @@ import { Toolbar } from "@material-ui/core";
 import routes from "routes.js";
 import Login from "views/Login/Login.jsx"
 import Dashboard from "views/Dashboard/Dashboard";
+import logo from "assets/img/reactlogo.png";
+import AppBar from '@material-ui/core/AppBar';
 
 class Homepage extends React.Component {
   state = {
     value: 0,
     text: "Next",
-    persons: {},
-    showLoginWindow: false
+    persons: {}
   };
   handleChange = (event, value) => {
     this.setState({ value });
@@ -60,41 +61,48 @@ class Homepage extends React.Component {
     this.setState({ value: index });
   };
 
-  login = () =>{
-    this.setState({showLoginWindow: true})
+  login = () => {
+    this.setState({ showLoginWindow: true })
   }
 
-  loginRedirect() {
-    // this.props.history.push("/admin/Dashboard")
-    // <Route path="admin/dashboard" component={Dashboard}/>
-    // <Link to="/cadastro/" className="btn">Cadastre-se</Link>
+  closeForgetPassword = () => {
 
-    return <Redirect to="admin/dashboard"/>
+  }
+
+  showForgetPasswordPopup = () => {
+    this.setState({ showForgetPasswordPopup: true })
   }
 
   render() {
     const { classes, ...rest } = this.props;
     const { text } = this.state //destucture state
     return (
-      <div style={{margin: "0px !important"}}>
-
-          <GridContainer noMargin>
-            <GridItem xs={12} sm={6} md={8}>
-
-            </GridItem>
-            {!this.state.showLoginWindow &&
-            <GridItem xs={12} sm={6} md={4}>
-              <div className={classes.rightAlign}>
-              <Button color="primary" round onClick={() => this.login()}>Registre-se</Button>
-              <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
+      <div style={{ margin: "0px !important" }}>
+        {!this.state.showLoginWindow &&
+          <AppBar style={{ background: '#9c27b0' }} position="static">
+            <Toolbar>
+              <div className={classes.logoImage + " " + classes.flex + " " + classes.leftAlign}>
+                <img src={logo} alt="logo" className={classes.img} />
+                Cara Crachá
               </div>
-            </GridItem>
-            }
-          </GridContainer>
-          {this.state.showLoginWindow &&
-          <Login/>
-          }
-        </div>
+              <div className={classes.rightAlign}>
+                <Button style={{color: "#9c27b0", 
+                                backgroundColor: "white",
+                                fontWeight: "bold",
+                                fontSize: "medium"}} 
+                                round
+                                onClick={() => this.login()}>
+                  Registre-se
+                </Button>
+                <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
+              </div>
+            </Toolbar>
+          </AppBar>
+        }
+        {this.state.showLoginWindow &&
+          <Login />
+        }
+      </div>
     );
   }
 }
