@@ -3,7 +3,8 @@ import React from "react";
 import PropTypes from "prop-types"
 // @material-ui/core
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import Select from "@material-ui/core/Select"
+import FormControl from "@material-ui/core/FormControl"
 // core components
 import GridItem from "components/Grid/GridItem.jsx"
 import GridContainer from "components/Grid/GridContainer.jsx"
@@ -12,7 +13,8 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import Button from "components/CustomButtons/Button.jsx"
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx"
-import {IconButton, Tooltip } from "@material-ui/core"
+import { IconButton, Tooltip } from "@material-ui/core"
+import { Toolbar, FormControlLabel, MenuItem, InputLabel } from "@material-ui/core"
 import Person from "@material-ui/icons/Person"
 import PersonAdd from "@material-ui/icons/PersonAdd"
 import Edit from "@material-ui/icons/Edit"
@@ -78,7 +80,7 @@ class Fechaduras extends React.Component {
   handleClosepopUpConfirmarDelecao = () => {
     this.setState({ popUpConfirmarDelecao: false });
   };
-  
+
   handleSuccessNotification = () => {
     this.setState({ snackbarSuccess: true });
     this.handleCloseVincularUsuario()
@@ -122,6 +124,14 @@ class Fechaduras extends React.Component {
   handleDateChange = () => event => {
     this.setState({ activationDate: event._d })
   }
+
+  handleAddressChange = () => event => {
+    this.setState({
+      lockAddress: event.target.value,
+    }, () => {
+    }
+    )
+  };
 
   render() {
     const { classes, ...rest } = this.props;
@@ -285,6 +295,29 @@ class Fechaduras extends React.Component {
                     Porta da frente
                           </FormHelperText>
                 </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
+                  <div style={{ paddingTop: '27px', display: "flex" }}>
+                    <FormControl>
+                      <InputLabel htmlFor="address">Endereço:</InputLabel>
+                      <Select
+                        native
+                        value={this.state.lockAddress}
+                        onChange={this.handleAddressChange()}
+                        name="Endereço:"
+                        inputProps={{
+                          id: 'address-selector',
+                        }}
+                      >
+                        <option value=""></option>
+                        <option value="endereço1">Endereço 1</option>
+                        <option value="endereço2">Endereço 2</option>
+                        <option value="endereço3">Endereço 3</option>
+                        <option value="endereço4">Endereço 4</option>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </GridItem>
+
               </GridContainer>
             </DialogContent>
             <DialogActions>
