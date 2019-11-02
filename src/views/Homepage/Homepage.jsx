@@ -69,12 +69,6 @@ class Homepage extends React.Component {
               </div>
             </Toolbar>
           </AppBar>
-          <GridContainer>
-            <GridItem>
-              
-            </GridItem>
-          </GridContainer>
-
         }
         {this.state.showLoginWindow &&
           <Login />
