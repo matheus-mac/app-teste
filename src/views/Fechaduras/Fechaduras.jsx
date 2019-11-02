@@ -174,9 +174,9 @@ class Fechaduras extends React.Component {
                   tableHeaderColor="primary"
                   tableHead={["Número Serial", "Identificador Fechadura", "Versão", ""]}
                   tableData={[
-                    ["Dakota Rice", "Niger", "Oud-Turnhout", toolbar],
-                    ["Minerva Hooper", "Curaçao", "Sinaai-Waas", toolbar],
-                    ["Sage Rodriguez", "Netherlands", "Baileux", toolbar]
+                    ["1", "Porta da sala", "1", toolbar],
+                    ["13", "Porta principal", "2", toolbar],
+                    ["47", "Escritório", "2", toolbar]
                   ]}
                   lastColumnRight
                 />
