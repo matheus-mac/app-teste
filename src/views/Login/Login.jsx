@@ -28,11 +28,17 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from "assets/img/reactlogo.png";
+import Axios from "axios";
+const actualHost = "localhost:33458"
 
 class Login extends React.Component {
   state = {
     showForgetPasswordPopup: false,
-    snackBarSuccess: false
+    snackBarSuccess: false,
+    emailCPF: "",
+    senha:"",
+    snackMessage:"",
+    forgetEmail:""
   };
 
   closeForgetPassword() {
@@ -66,6 +72,74 @@ class Login extends React.Component {
     this.setState({ snackbarSuccess: false });
   };
 
+  handleFailNotification = (snackMessage) => {
+    this.setState({ snackBarFail: true });
+    this.setState({snackMessage: snackMessage});
+    this.alertTimeout = setTimeout(
+      function () {
+        this.setState({ snackBarFail: false });
+      }.bind(this),
+      6000
+    );
+  };
+
+  handleCloseFailNotification = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ snackBarFail: false });
+  };
+  
+  handleAccountChange = (event) =>{
+    this.setState({emailCPF: event.target.value})
+  }
+  
+  handlePasswordChange = (event) =>{
+    this.setState({senha: event.target.value})
+  }
+
+  handleClickLogin = () =>{
+    if (this.state.emailCPF === ""|| this.state.senha ===""){
+      this.handleFailNotification("Insira seu usuário e senha.")
+    }
+    else{
+      Axios.post(actualHost + `/api/Usuarios/loginWithToken`,
+        {
+          account: this.state.emailCPF,
+          senha: this.state.senha
+        }
+      ).then(res=>{
+        this.handleSuccessNotification()
+      })
+      .catch(res=> {
+        this.handleFailNotification("Um erro ocorreu. Entre em contato com o suporte")
+      })
+    }
+  }
+
+  handleForgetEmail = (event) =>{
+    this.setState({forgetEmail: event.target.value})
+  }
+
+  handleForgetPassword = () =>{
+    if (this.state.forgetEmail === ""){
+      this.handleFailNotification("Insira um email válido.")
+    }
+    else{
+      Axios.post(actualHost + `/api/Usuarios/forgetPassword`,
+        {
+          forgettedPassword: this.state.forgetEmail
+        }
+      ).then(res=>{
+        this.handleSuccessNotification()
+      })
+      .catch(res=> {
+        this.handleFailNotification("Um erro ocorreu. Entre em contato com o suporte")
+      })
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const { text } = this.state //destucture state
@@ -98,7 +172,8 @@ class Login extends React.Component {
                       labelText="Email ou CPF/CNPJ:"
                       id="email-address"
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
+                        onChange: this.handleAccountChange
                       }}
                     />
                   </GridItem>
@@ -110,7 +185,11 @@ class Login extends React.Component {
                       labelText="Senha"
                       id="password"
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
+                        onChange: this.handlePasswordChange
+                      }}
+                      inputProps={{
+                        type: "password"
                       }}
                     />
                   </GridItem>
@@ -127,9 +206,9 @@ class Login extends React.Component {
                     </Button>
                   </GridItem>
                   <GridItem xs={12} sm={12} md={4} className={classes.rightAlign}>
-                    <Link to="admin/dashboard">
-                      <Button color="primary" round>Login</Button>
-                    </Link>
+                    {/* <Link to="admin/dashboard"> */}
+                      <Button color="primary" onClick={this.handleClickLogin} round>Login</Button>
+                    {/* </Link> */}
                   </GridItem>
                 </GridContainer>
               </CardFooter>
@@ -147,6 +226,7 @@ class Login extends React.Component {
                 id="email"
                 label="Email"
                 type="email"
+                onChange={this.handleForgetEmail}
                 fullWidth
               />
             </DialogContent>
@@ -154,7 +234,7 @@ class Login extends React.Component {
               <Button onClick={this.handleClosePopup} color="primary">
                 Cancelar
               </Button>
-              <Button onClick={this.handleSuccessNotification} color="primary">
+              <Button onClick={this.handleForgetPassword} color="primary">
                 Enviar
               </Button>
             </DialogActions>}
@@ -167,6 +247,16 @@ class Login extends React.Component {
             message="Operação realizada!"
             open={this.state.snackbarSuccess}
             closeNotification={this.handleCloseSuccessNotification}
+            close
+          />
+
+          <Snackbar
+            place="br"
+            color="danger"
+            icon={Info}
+            message={this.state.snackMessage}
+            open={this.state.snackBarFail}
+            closeNotification={this.handleCloseFailNotification}
             close
           />
         </GridContainer>

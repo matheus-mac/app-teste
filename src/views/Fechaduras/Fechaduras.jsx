@@ -14,7 +14,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import Button from "components/CustomButtons/Button.jsx"
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx"
 import { IconButton, Tooltip } from "@material-ui/core"
-import { Toolbar, FormControlLabel, MenuItem, InputLabel } from "@material-ui/core"
+import { InputLabel } from "@material-ui/core"
 import Person from "@material-ui/icons/Person"
 import PersonAdd from "@material-ui/icons/PersonAdd"
 import Edit from "@material-ui/icons/Edit"

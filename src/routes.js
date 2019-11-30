@@ -19,29 +19,11 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Edit from "@material-ui/icons/Edit"
 import Person from "@material-ui/icons/Person";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
-import BubbleChart from "@material-ui/icons/BubbleChart";
-import LocationOn from "@material-ui/icons/LocationOn";
-import Notifications from "@material-ui/icons/Notifications";
-import Unarchive from "@material-ui/icons/Unarchive";
-import Language from "@material-ui/icons/Language";
-import Folder from "@material-ui/icons/FolderOpen"
-import Save_Alt from "@material-ui/icons/SaveAlt"
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
-import TableList from "views/TableList/TableList.jsx";
-import Typography from "views/Typography/Typography.jsx";
-import Icons from "views/Icons/Icons.jsx";
-import Maps from "views/Maps/Maps.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
-import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
-import FileUploaderPage from "components/FileUploader/FileUploader.jsx"
-import APITesterPage from "components/API Tester/APItester.jsx"
-import Homepage from "views/Homepage/Homepage.jsx"
 import Cadastro from "views/Cadastro/Cadastro.jsx"
 // core components/views for RTL layout
-import RTLPage from "views/RTLPage/RTLPage.jsx";
 import PhoneLinkLock from "@material-ui/icons/PhonelinkLock"
 import Fechaduras from "views/Fechaduras/Fechaduras";
 import Acessos from "views/Acessos/Acessos"

@@ -30,15 +30,10 @@ import Hidden from "@material-ui/core/Hidden";
 import Poppers from "@material-ui/core/Popper";
 import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
-import Person from "@material-ui/icons/Person";
-import Notifications from "@material-ui/icons/Notifications";
-import Dashboard from "@material-ui/icons/Dashboard";
-import Search from "@material-ui/icons/Search";
 // core components
-import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown"
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
 
 class AdminNavbarLinks extends React.Component {
@@ -75,11 +70,11 @@ class AdminNavbarLinks extends React.Component {
 
   render() {
     if (this.state.logoutRedirect){
-      {{this.state.logoutRedirect=false}}
+      {{this.setState({logoutRedirect: false})}}
       return <Redirect to="/homepage"/>
     }
     if (this.state.profileRedirect){
-      {{this.state.profileRedirect=false}}
+      {{this.setState({profileRedirect: false})}}
       return <Redirect to="/admin/usuario"/>
     }
     const { classes } = this.props;

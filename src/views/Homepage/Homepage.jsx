@@ -45,8 +45,7 @@ class Homepage extends React.Component {
   }
 
   render() {
-    const { classes, ...rest } = this.props;
-    const { text } = this.state //destucture state
+    const { classes } = this.props;
     return (
       <div style={{ margin: "0px !important" }}>
         {!this.state.showLoginWindow && !this.state.showRegisterWindow  &&

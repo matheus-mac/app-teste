@@ -9,7 +9,7 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 import GridItem from "components/Grid/GridItem.jsx"
 import Select from "@material-ui/core/Select"
 import FormControl from "@material-ui/core/FormControl"
-import { Toolbar, FormControlLabel, MenuItem, InputLabel } from "@material-ui/core"
+import {InputLabel } from "@material-ui/core"
 import Card from "components/Card/Card.jsx";
 import Table from "components/Table/Table.jsx";
 import CardBody from "components/Card/CardBody";
@@ -43,7 +43,6 @@ class Acessos extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <GridContainer>

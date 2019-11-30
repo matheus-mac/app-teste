@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import withStyles from "@material-ui/core/styles/withStyles";
 import Select from "@material-ui/core/Select"
 import FormControl from "@material-ui/core/FormControl"
-import { Toolbar, FormControlLabel, MenuItem, InputLabel } from "@material-ui/core"
+import {InputLabel } from "@material-ui/core"
 // core components
 import GridItem from "components/Grid/GridItem.jsx"
 import GridContainer from "components/Grid/GridContainer.jsx"
@@ -16,8 +16,6 @@ import CardBody from "components/Card/CardBody.jsx";
 import Button from "components/CustomButtons/Button.jsx"
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx"
 import { IconButton, Tooltip } from "@material-ui/core"
-import Person from "@material-ui/icons/Person"
-import PersonAdd from "@material-ui/icons/PersonAdd"
 import Edit from "@material-ui/icons/Edit"
 import Delete from "@material-ui/icons/Delete"
 import Dialog from '@material-ui/core/Dialog';
@@ -25,19 +23,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
 import CustomInput from "components/CustomInput/CustomInput.jsx"
 import Snackbar from "components/Snackbar/Snackbar.jsx";
 import Info from "@material-ui/icons/InfoOutlined"
-import Close from "@material-ui/icons/Close"
-import { KeyboardDatePicker } from "@material-ui/pickers"
-import { MuiPickersUtilsProvider } from "@material-ui/pickers"
-import FormHelperText from "@material-ui/core/FormHelperText"
 import CardHeader from "components/Card/CardHeader.jsx";
-import MomentUtils from "@date-io/moment"
-import moment from "moment"
-import "moment/locale/pt-br"
-moment.locale("pt-br")
 
 
 const listaDeEstados =
