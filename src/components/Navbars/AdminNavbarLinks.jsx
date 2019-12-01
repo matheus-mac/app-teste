@@ -63,6 +63,10 @@ class AdminNavbarLinks extends React.Component {
   };
   handleLogout = event => {
     this.setState({logoutRedirect: true})
+    localStorage.removeItem('@cara-cracha/username')
+    localStorage.removeItem('@cara-cracha/id')
+    localStorage.removeItem('@cara-cracha/Perfil')
+    localStorage.removeItem('@cara-cracha/LoggedIn')
   }
   handleProfileClick = event =>{
     this.setState({profileRedirect: true})
@@ -191,7 +195,7 @@ class AdminNavbarLinks extends React.Component {
           </Poppers>
         </div> */}
         <div className={classes.manager}>
-          Olá usuário!
+          Olá {localStorage.getItem("@cara-cracha/username")}!
           <Button
             buttonRef={node => {
               this.anchorProfile = node;

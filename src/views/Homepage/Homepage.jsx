@@ -43,6 +43,9 @@ class Homepage extends React.Component {
   showForgetPasswordPopup = () => {
     this.setState({ showForgetPasswordPopup: true })
   }
+  test = () =>{
+    this.props.history.push('admin/dashboard')
+  }
 
   render() {
     const { classes } = this.props;
@@ -67,10 +70,11 @@ class Homepage extends React.Component {
                 <Button color="primary" round onClick={() => this.login()}>Entrar</Button>
               </div>
             </Toolbar>
+            <Button onClick={this.test}>batata</Button>
           </AppBar>
         }
         {this.state.showLoginWindow &&
-          <Login />
+          <Login redirectProp={this.test}/>
         }
         {this.state.showRegisterWindow &&
           <Registrar />

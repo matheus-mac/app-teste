@@ -102,12 +102,12 @@ class Registrar extends React.Component {
       this.handleFailNotification("Todos os campos são obrigatórios")
     }
     else{
-      Axios.post(actualHost + `/api/Usuarios/RegistrarUsuario`,
+      Axios.post(actualHost + `/api/Usuarios/RegistrarUsuario`, null, {params:
         {
           nome: this.state.nome,
           cpfcnpj: this.state.CPFCNPJ,
           email: this.state.email
-        }
+        }}
       ).then(res=>{
         this.handleSuccessNotification()
       })

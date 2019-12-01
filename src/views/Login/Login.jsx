@@ -29,7 +29,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from "assets/img/reactlogo.png";
 import Axios from "axios";
-const actualHost = "https://52.54.145.159:443/"
+const actualHost = "https://52.54.145.159:443"
 
 class Login extends React.Component {
   state = {
@@ -104,13 +104,21 @@ class Login extends React.Component {
       this.handleFailNotification("Insira seu usuário e senha.")
     }
     else{
-      Axios.get(actualHost + `/api/Usuarios/Login`,
+      Axios.get(actualHost + `/api/Usuarios/Login`, {params:
         {
           cpfcnpj: this.state.cpfcnpj,
           senha: this.state.senha
-        }
+        }}
       ).then(res=>{
-        this.handleSuccessNotification()
+        localStorage.setItem('@cara-cracha/username', res.data.NomeDoUsuario)
+        localStorage.setItem('@cara-cracha/id', res.data.Id)
+        localStorage.setItem('@cara-cracha/Perfil', res.data.Perfil)
+        localStorage.setItem('@cara-cracha/LoggedIn', res.data.LoggedIn)
+        if (res.data.LoggedIn){
+          this.props.redirectProp()
+        }else{
+          this.handleFailNotification("Usuário ou senha incorretos.")
+        }
       })
       .catch(res=> {
         this.handleFailNotification("Um erro ocorreu. Entre em contato com o suporte")
@@ -127,10 +135,10 @@ class Login extends React.Component {
       this.handleFailNotification("Insira um email válido.")
     }
     else{
-      Axios.post(actualHost + `/api/Usuarios/EsqueciMinhaSenha`,
+      Axios.get(actualHost + `/api/Usuarios/EsqueciMinhaSenha`, {params:
         {
-          forgettedPassword: this.state.forgetCPFCNPJ
-        }
+          cpfcnpj: this.state.forgetCPFCNPJ
+        }}
       ).then(res=>{
         this.handleSuccessNotification()
       })
@@ -169,11 +177,14 @@ class Login extends React.Component {
                   <GridItem xs={12} sm={12} md={2} />
                   <GridItem xs={12} sm={12} md={8}>
                     <CustomInput
-                      labelText="Email ou CPF/CNPJ:"
-                      id="email-address"
+                      labelText="CPF/CNPJ:"
+                      id="cpfcnpj"
                       formControlProps={{
                         fullWidth: true,
                         onChange: this.handleAccountChange
+                      }}
+                      inputProps={{
+                        type: "number"
                       }}
                     />
                   </GridItem>
@@ -218,14 +229,14 @@ class Login extends React.Component {
             <DialogTitle>Esqueceu sua senha?</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Tudo bem, envie seu email que nós resolvemos!
+                Tudo bem, informe seu CPF ou CNPJ que resolvemos!
               </DialogContentText>
               <TextField
                 autoFocus
                 margin="dense"
-                id="email"
-                label="Email"
-                type="email"
+                id="cpf-cnpj"
+                label="CPF/CNPJ"
+                type="number"
                 onChange={this.handleForgetCPFCNPJ}
                 fullWidth
               />
@@ -244,7 +255,7 @@ class Login extends React.Component {
             place="br"
             color="success"
             icon={Info}
-            message="Operação realizada!"
+            message="A senha foi enviada para o email cadastrado!"
             open={this.state.snackbarSuccess}
             closeNotification={this.handleCloseSuccessNotification}
             close
