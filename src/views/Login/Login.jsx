@@ -29,16 +29,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from "assets/img/reactlogo.png";
 import Axios from "axios";
-const actualHost = "localhost:33458"
+const actualHost = "https://52.54.145.159:443/"
 
 class Login extends React.Component {
   state = {
     showForgetPasswordPopup: false,
     snackBarSuccess: false,
-    emailCPF: "",
+    cpfcnpj: "",
     senha:"",
     snackMessage:"",
-    forgetEmail:""
+    forgetCPFCNPJ:""
   };
 
   closeForgetPassword() {
@@ -92,7 +92,7 @@ class Login extends React.Component {
   };
   
   handleAccountChange = (event) =>{
-    this.setState({emailCPF: event.target.value})
+    this.setState({cpfcnpj: event.target.value})
   }
   
   handlePasswordChange = (event) =>{
@@ -100,13 +100,13 @@ class Login extends React.Component {
   }
 
   handleClickLogin = () =>{
-    if (this.state.emailCPF === ""|| this.state.senha ===""){
+    if (this.state.cpfcnpj === ""|| this.state.senha ===""){
       this.handleFailNotification("Insira seu usuário e senha.")
     }
     else{
-      Axios.post(actualHost + `/api/Usuarios/loginWithToken`,
+      Axios.get(actualHost + `/api/Usuarios/Login`,
         {
-          account: this.state.emailCPF,
+          cpfcnpj: this.state.cpfcnpj,
           senha: this.state.senha
         }
       ).then(res=>{
@@ -118,18 +118,18 @@ class Login extends React.Component {
     }
   }
 
-  handleForgetEmail = (event) =>{
-    this.setState({forgetEmail: event.target.value})
+  handleForgetCPFCNPJ = (event) =>{
+    this.setState({forgetCPFCNPJ: event.target.value})
   }
 
   handleForgetPassword = () =>{
-    if (this.state.forgetEmail === ""){
+    if (this.state.forgetCPFCNPJ === ""){
       this.handleFailNotification("Insira um email válido.")
     }
     else{
-      Axios.post(actualHost + `/api/Usuarios/forgetPassword`,
+      Axios.post(actualHost + `/api/Usuarios/EsqueciMinhaSenha`,
         {
-          forgettedPassword: this.state.forgetEmail
+          forgettedPassword: this.state.forgetCPFCNPJ
         }
       ).then(res=>{
         this.handleSuccessNotification()
@@ -226,7 +226,7 @@ class Login extends React.Component {
                 id="email"
                 label="Email"
                 type="email"
-                onChange={this.handleForgetEmail}
+                onChange={this.handleForgetCPFCNPJ}
                 fullWidth
               />
             </DialogContent>

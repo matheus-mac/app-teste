@@ -20,7 +20,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import logo from "assets/img/reactlogo.png";
 import Axios from "axios";
 import { thisExpression } from "@babel/types";
-const actualHost = "localhost:33458"
+const actualHost = "https://52.54.145.159:443"
 
 
 class Registrar extends React.Component {
